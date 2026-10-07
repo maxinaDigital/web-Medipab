@@ -12,10 +12,10 @@ export const CLINIC = {
   name: "Medipab",
   fullName: "Medipab Hospital de Especialidades",
   legalName: "Medipab Hospital de Especialidades", // PENDIENTE: razón social
-  phone: "(465) 111-1202", // Google Maps
+  phone: "465 1111 202", // confirmado por el usuario (formato de presentación)
   phoneHref: "tel:+524651111202",
   // PENDIENTE: confirmar si Urgencias tiene línea directa; mientras, el conmutador (abierto 24 h)
-  emergencyPhone: "(465) 111-1202",
+  emergencyPhone: "465 1111 202",
   emergencyPhoneHref: "tel:+524651111202",
   whatsapp: WHATSAPP_PLACEHOLDER, // PENDIENTE: número de WhatsApp del hospital (52 + 10 dígitos)
   email: "contacto@medipab.com.mx", // PENDIENTE

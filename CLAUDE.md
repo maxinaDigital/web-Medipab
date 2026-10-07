@@ -48,7 +48,7 @@ public/images/            # logo SVGs served by the site
 Source: interview with the medical director (2026-10-03). Confirmed facts the copy relies on:
 
 - Specialty hospital in operation in **Pabellón de Arteaga, Ags.**; single site, no branches.
-- Address and main phone from the hospital's Google Maps listing (https://maps.app.goo.gl/sHdqc2kNK48Wzm8WA): Aquiles Serdán, Zona Centro, CP 20670; (465) 111-1202; open 24 h; coordinates in `CLINIC.geo`.
+- Address and main phone from the hospital's Google Maps listing (https://maps.app.goo.gl/sHdqc2kNK48Wzm8WA): Aquiles Serdán, Zona Centro, CP 20670; phone 465 1111 202 (display format confirmed by the user); open 24 h; coordinates in `CLINIC.geo`.
 - **5 private rooms (1 bed each) + 3 emergency beds.**
 - Services (14, one entry each in `lib/data/services.ts`): Urgencias 24 h, Hospitalización, UCI adultos, UCIN, Ginecobstetricia, Pediatría, Cirugía general, Ortopedia/trauma, Consulta externa, Laboratorio, Imagenología, Banco de sangre, Farmacia al público, Ambulancia.
 - **~52 external doctors** managed by the hospital → copy says "más de 50".
