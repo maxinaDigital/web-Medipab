@@ -21,8 +21,6 @@ export type Doctor = {
 
 export const doctors: Doctor[] = [];
 
-/** Número aproximado de médicos que atienden en el hospital (dato de Dirección Médica). */
-export const DOCTOR_COUNT_LABEL = "50+";
 
 export const getDoctorBySlug = (slug: string): Doctor | undefined =>
   doctors.find((d) => d.slug === slug);

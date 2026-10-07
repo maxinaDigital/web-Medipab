@@ -6,7 +6,10 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { EmergencyButton } from "@/components/layout/EmergencyButton";
-import { CLINIC } from "@/lib/data/clinic";
+import { CLINIC, assertLaunchReady } from "@/lib/data/clinic";
+
+// Bloquea el deploy de producción mientras haya datos de contacto de relleno (ver clinic.ts).
+assertLaunchReady();
 
 const inter = Inter({
   subsets: ["latin"],

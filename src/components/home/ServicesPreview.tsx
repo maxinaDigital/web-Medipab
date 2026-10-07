@@ -2,17 +2,11 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  Siren, BedSingle, HeartPulse, Baby, Heart, Smile, Scissors, Bone,
-  Stethoscope, ArrowRight,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { services } from "@/lib/data/services";
-
-const ICON_MAP: Record<string, React.ElementType> = {
-  Siren, BedSingle, HeartPulse, Baby, Heart, Smile, Scissors, Bone,
-};
+import { serviceIcon } from "@/components/shared/serviceIcons";
 
 const SERVICE_SLUGS = services.filter((s) => s.featured);
 
@@ -42,7 +36,7 @@ export function ServicesPreview() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {SERVICE_SLUGS.map(({ slug, icon }, i) => {
-            const Icon = ICON_MAP[icon] ?? Stethoscope;
+            const Icon = serviceIcon(icon);
             const name = ts(`items.${slug}.name`);
             const desc = ts(`items.${slug}.desc`);
             return (

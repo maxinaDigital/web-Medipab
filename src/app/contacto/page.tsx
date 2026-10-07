@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import { CLINIC, addressLines } from "@/lib/data/clinic";
+import { CLINIC, addressLines, whatsappUrl } from "@/lib/data/clinic";
 
 export const metadata: Metadata = {
   title: "Contacto",
@@ -95,7 +95,7 @@ export default async function ContactoPage() {
 
             {/* WhatsApp CTA */}
             <a
-              href={`https://wa.me/${CLINIC.whatsapp}?text=${encodeURIComponent(`Hola, me gustaría obtener más información sobre ${CLINIC.name}.`)}`}
+              href={whatsappUrl(`Hola, me gustaría obtener más información sobre ${CLINIC.name}.`)}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 bg-primary text-white py-3 px-6 rounded-xl font-medium hover:bg-primary-dark transition-colors w-full"

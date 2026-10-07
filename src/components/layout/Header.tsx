@@ -41,13 +41,16 @@ export function Header() {
             <span>{CLINIC.address.full}</span>
             <div className="flex items-center gap-4">
               <LanguageSwitcher tone="dark" />
-              <a
-                href={CLINIC.phoneHref}
-                className="flex items-center gap-1.5 hover:text-primary-light transition-colors"
-              >
-                <Phone size={12} />
-                <span>{CLINIC.phone}</span>
-              </a>
+              {/* El general solo se muestra si es distinto de la línea de Urgencias */}
+              {CLINIC.phoneHref !== CLINIC.emergencyPhoneHref && (
+                <a
+                  href={CLINIC.phoneHref}
+                  className="flex items-center gap-1.5 hover:text-primary-light transition-colors"
+                >
+                  <Phone size={12} />
+                  <span>{CLINIC.phone}</span>
+                </a>
+              )}
               <a
                 href={CLINIC.emergencyPhoneHref}
                 className="flex items-center gap-1.5 rounded-full bg-urgent hover:bg-urgent-dark px-3 py-0.5 font-semibold transition-colors"

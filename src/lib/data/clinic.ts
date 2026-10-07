@@ -4,6 +4,10 @@
 // Todo lo marcado PENDIENTE es un placeholder que el cliente debe confirmar antes de publicar
 // (lista completa en CLAUDE.md → "Hospital data").
 
+// Número de relleno heredado del arranque del proyecto. Mientras siga aquí, el build de producción falla
+// (ver assertLaunchReady) para que el formulario no envíe datos de pacientes a un número ajeno.
+const WHATSAPP_PLACEHOLDER = "524650000000";
+
 export const CLINIC = {
   name: "Medipab",
   fullName: "Medipab Hospital de Especialidades",
@@ -13,9 +17,10 @@ export const CLINIC = {
   // PENDIENTE: confirmar si Urgencias tiene línea directa; mientras, el conmutador (abierto 24 h)
   emergencyPhone: "(465) 111-1202",
   emergencyPhoneHref: "tel:+524651111202",
-  whatsapp: "524650000000", // PENDIENTE: número de WhatsApp del hospital
+  whatsapp: WHATSAPP_PLACEHOLDER, // PENDIENTE: número de WhatsApp del hospital (52 + 10 dígitos)
   email: "contacto@medipab.com.mx", // PENDIENTE
-  siteUrl: "https://medipab.com.mx", // PENDIENTE: dominio
+  // Dominio público: se configura con NEXT_PUBLIC_SITE_URL en Vercel. PENDIENTE: confirmar dominio
+  siteUrl: (process.env.NEXT_PUBLIC_SITE_URL || "https://medipab.com.mx").replace(/\/$/, ""),
   geo: { latitude: 22.1489027, longitude: -102.2790758 },
   address: {
     street: "Aquiles Serdán", // PENDIENTE: número exterior (Google Maps no lo muestra)
@@ -32,9 +37,27 @@ export const CLINIC = {
   social: {
     facebook: "", // PENDIENTE
     instagram: "", // PENDIENTE
-    whatsapp: "https://wa.me/524650000000", // PENDIENTE
   },
 } as const;
+
+/** Enlace de WhatsApp al hospital, opcionalmente con un mensaje prellenado. */
+export function whatsappUrl(text?: string): string {
+  const base = `https://wa.me/${CLINIC.whatsapp}`;
+  return text ? `${base}?text=${encodeURIComponent(text)}` : base;
+}
+
+/**
+ * Falla el build de producción en Vercel si siguen datos de contacto de relleno que recibirían
+ * información de pacientes. Los previews (VERCEL_ENV=preview) y el desarrollo local no se bloquean.
+ */
+export function assertLaunchReady(): void {
+  if (process.env.VERCEL_ENV !== "production") return;
+  if (CLINIC.whatsapp === WHATSAPP_PLACEHOLDER) {
+    throw new Error(
+      "CLINIC.whatsapp sigue siendo el número de relleno: configura el WhatsApp real en src/lib/data/clinic.ts antes de publicar."
+    );
+  }
+}
 
 /** Municipios vecinos desde los que llegan pacientes (para "Cómo llegar"). */
 export const NEARBY_TOWNS = [

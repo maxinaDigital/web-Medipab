@@ -36,8 +36,3 @@ export const appointmentSchema = z.object({
 });
 
 export type AppointmentFormData = z.infer<typeof appointmentSchema>;
-
-export const SHIFT_LABELS: Record<"morning" | "afternoon", string> = {
-  morning: "Mañana",
-  afternoon: "Tarde",
-};

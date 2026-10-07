@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { AppointmentForm } from "@/components/citas/AppointmentForm";
 import { Phone, MessageCircle, Clock } from "lucide-react";
-import { CLINIC } from "@/lib/data/clinic";
+import { CLINIC, whatsappUrl } from "@/lib/data/clinic";
 
 export const metadata: Metadata = {
   title: "Agendar cita",
@@ -51,7 +51,7 @@ export default async function CitasPage({
               </h2>
               <div className="space-y-3">
                 <a
-                  href={`https://wa.me/${CLINIC.whatsapp}?text=${encodeURIComponent(`Hola, me gustaría agendar una cita en ${CLINIC.name}.`)}`}
+                  href={whatsappUrl(`Hola, me gustaría agendar una cita en ${CLINIC.name}.`)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-4 rounded-xl border border-brand-border hover:border-primary hover:bg-primary-light transition-colors"

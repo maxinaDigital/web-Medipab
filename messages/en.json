@@ -322,7 +322,8 @@
     "contact": "Contact",
     "rights": "All rights reserved.",
     "address": "Address",
-    "privacy": "Privacy notice"
+    "privacy": "Privacy notice",
+    "socialLabel": "{name} on {network}"
   },
   "aboutPage": {
     "eyebrow": "Who we are",

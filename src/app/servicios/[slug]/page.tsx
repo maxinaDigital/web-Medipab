@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import * as LucideIcons from "lucide-react";
 import { CheckCircle2, ChevronRight, MessageCircle, Phone } from "lucide-react";
 import { services, getServiceBySlug } from "@/lib/data/services";
 import { doctors } from "@/lib/data/doctors";
-import { CLINIC } from "@/lib/data/clinic";
+import { CLINIC, whatsappUrl } from "@/lib/data/clinic";
+import { serviceIcon } from "@/components/shared/serviceIcons";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -34,15 +34,11 @@ export default async function ServicePage({ params }: { params: { slug: string }
   const tn = await getTranslations("nav");
   const td = await getTranslations("doctors");
 
-  const IconComponent =
-    (LucideIcons as unknown as Record<string, React.ComponentType<{ className?: string }>>)[service.icon] ??
-    LucideIcons.Stethoscope;
+  const IconComponent = serviceIcon(service.icon);
 
   const relatedDoctors = doctors.filter((d) => d.servicesSlugs.includes(service.slug));
 
-  const whatsappText = encodeURIComponent(
-    `Hola, me gustaría agendar una cita para ${service.name}.`
-  );
+  const whatsappText = `Hola, me gustaría agendar una cita para ${service.name}.`;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -168,7 +164,7 @@ export default async function ServicePage({ params }: { params: { slug: string }
                 {tc("immediateResponse")}
               </p>
               <a
-                href={`https://wa.me/${CLINIC.whatsapp}?text=${whatsappText}`}
+                href={whatsappUrl(whatsappText)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 bg-white text-primary font-semibold py-3 px-5 rounded-lg hover:bg-primary-light transition-colors w-full"

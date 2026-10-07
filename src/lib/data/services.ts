@@ -161,5 +161,10 @@ export const services: Service[] = [
   },
 ];
 
+/** Especialidades con consulta: directorio médico y vista sin perfiles publicados. */
+export const SPECIALTY_SERVICES = services.filter(
+  (s) => s.category === "especialidades" || s.slug === "neonatologia-ucin"
+);
+
 export const getServiceBySlug = (slug: string): Service | undefined =>
   services.find((s) => s.slug === slug);

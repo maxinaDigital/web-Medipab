@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { User, ChevronRight, MessageCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { doctors } from "@/lib/data/doctors";
-import { services } from "@/lib/data/services";
-import { CLINIC } from "@/lib/data/clinic";
+import { SPECIALTY_SERVICES } from "@/lib/data/services";
+import { CLINIC, whatsappUrl } from "@/lib/data/clinic";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { buttonVariants } from "@/components/ui/button";
 
@@ -96,9 +96,7 @@ export function TeamPreview() {
             className="mt-12 rounded-2xl border border-brand-border bg-brand-bg p-8 text-center"
           >
             <ul className="flex flex-wrap justify-center gap-2" role="list">
-              {services
-                .filter((s) => s.category === "especialidades" || s.slug === "neonatologia-ucin")
-                .map((s) => (
+              {SPECIALTY_SERVICES.map((s) => (
                   <li key={s.slug}>
                     <Link
                       href={`/servicios/${s.slug}`}
@@ -111,9 +109,7 @@ export function TeamPreview() {
             </ul>
             <p className="mt-6 text-sm text-brand-muted">{t("directoryNote")}</p>
             <a
-              href={`https://wa.me/${CLINIC.whatsapp}?text=${encodeURIComponent(
-                `Hola, me gustaría que me orienten para elegir un especialista en ${CLINIC.name}.`
-              )}`}
+              href={whatsappUrl(`Hola, me gustaría que me orienten para elegir un especialista en ${CLINIC.name}.`)}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-5 inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-6 py-3 rounded-xl font-semibold transition-colors"

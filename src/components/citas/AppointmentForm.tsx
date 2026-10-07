@@ -12,9 +12,15 @@ import { appointmentSchema } from "@/lib/validations/appointmentSchema";
 type AppointmentFormInput = z.input<typeof appointmentSchema>;
 import { services } from "@/lib/data/services";
 import { doctors } from "@/lib/data/doctors";
-import { CLINIC } from "@/lib/data/clinic";
+import { CLINIC, whatsappUrl } from "@/lib/data/clinic";
 
 const BOOKABLE_SERVICES = services.filter((s) => s.bookable);
+
+/** El médico existe y atiende el servicio (si no hay servicio elegido, basta con que exista). */
+function doctorMatches(doctorSlug: string | undefined, serviceSlug: string | undefined): boolean {
+  const doctor = doctors.find((d) => d.slug === doctorSlug);
+  return !!doctor && (!serviceSlug || doctor.servicesSlugs.includes(serviceSlug));
+}
 
 type AppointmentFormProps = {
   /** Slug de servicio a preseleccionar (desde ?servicio=). Se ignora si no es agendable. */
@@ -29,18 +35,22 @@ export function AppointmentForm({ initialService, initialDoctor }: AppointmentFo
   const tc = useTranslations("common");
   const ts = useTranslations("servicesSection");
 
+  const defaultService = BOOKABLE_SERVICES.some((s) => s.slug === initialService) ? initialService : "";
+
   const {
     register,
     handleSubmit,
     watch,
+    getValues,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<AppointmentFormInput>({
     resolver: zodResolver(appointmentSchema),
     defaultValues: {
       isFirstTime: false,
       acceptsPrivacy: false,
-      service: BOOKABLE_SERVICES.some((s) => s.slug === initialService) ? initialService : "",
-      doctor: doctors.some((d) => d.slug === initialDoctor) ? initialDoctor : "",
+      service: defaultService,
+      doctor: doctorMatches(initialDoctor, defaultService) ? initialDoctor : "",
     },
   });
 
@@ -72,7 +82,7 @@ export function AppointmentForm({ initialService, initialDoctor }: AppointmentFo
       .filter(Boolean)
       .join("\n");
 
-    const url = `https://wa.me/${CLINIC.whatsapp}?text=${encodeURIComponent(msg)}`;
+    const url = whatsappUrl(msg);
     window.open(url, "_blank");
     setSent(true);
   };
@@ -89,7 +99,7 @@ export function AppointmentForm({ initialService, initialDoctor }: AppointmentFo
         <p className="text-brand-muted mb-6">
           {tc("requestSentDesc")}{" "}
           <a
-            href={`https://wa.me/${CLINIC.whatsapp}`}
+            href={whatsappUrl()}
             target="_blank"
             rel="noopener noreferrer"
             className="text-primary hover:underline"
@@ -165,7 +175,12 @@ export function AppointmentForm({ initialService, initialDoctor }: AppointmentFo
             {t("serviceLabel")} <span className="text-red-500">*</span>
           </label>
           <select
-            {...register("service")}
+            {...register("service", {
+              // Si el médico elegido no atiende la nueva especialidad, se limpia para no enviarlo por error
+              onChange: (e) => {
+                if (!doctorMatches(getValues("doctor"), e.target.value)) setValue("doctor", "");
+              },
+            })}
             className="w-full px-4 py-2.5 rounded-lg border border-brand-border text-brand-text focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition text-sm bg-white"
           >
             <option value="">{t("servicePlaceholder")}</option>

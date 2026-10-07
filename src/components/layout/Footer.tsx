@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Phone, Mail, MapPin, Clock, Share2, Camera, MessageCircle, CalendarDays } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Logo } from "./Logo";
-import { CLINIC } from "@/lib/data/clinic";
+import { CLINIC, whatsappUrl } from "@/lib/data/clinic";
 import { services } from "@/lib/data/services";
 
 export function Footer() {
@@ -19,9 +19,9 @@ export function Footer() {
 
   // Solo las redes con URL configurada en clinic.ts
   const SOCIAL_LINKS = [
-    { href: CLINIC.social.facebook, label: "Facebook", Icon: Share2 },
-    { href: CLINIC.social.instagram, label: "Instagram", Icon: Camera },
-    { href: CLINIC.social.whatsapp, label: "WhatsApp", Icon: MessageCircle },
+    { href: CLINIC.social.facebook as string, label: "Facebook", Icon: Share2 },
+    { href: CLINIC.social.instagram as string, label: "Instagram", Icon: Camera },
+    { href: whatsappUrl(), label: "WhatsApp", Icon: MessageCircle },
   ].filter((link) => link.href);
 
   const NAV_LINKS = [
@@ -50,7 +50,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-full bg-white/10 hover:bg-accent transition-colors"
-                aria-label={`${label} de ${CLINIC.name}`}
+                aria-label={t("socialLabel", { network: label, name: CLINIC.name })}
               >
                 <Icon size={16} />
               </a>

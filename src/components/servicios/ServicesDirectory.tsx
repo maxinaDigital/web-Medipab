@@ -2,19 +2,11 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import {
-  Ambulance, BedSingle, Baby, Bone, ChevronRight, Droplet, FlaskConical, Heart, HeartPulse,
-  MessageCircle, Pill, ScanLine, Scissors, Search, Siren, Smile, Stethoscope, X,
-} from "lucide-react";
+import { ChevronRight, MessageCircle, Search, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { services, type ServiceCategory } from "@/lib/data/services";
-import { CLINIC } from "@/lib/data/clinic";
-
-// Importación explícita: `import * as` en un componente cliente mete toda la librería de íconos al bundle.
-const ICON_MAP: Record<string, React.ElementType> = {
-  Ambulance, BedSingle, Baby, Bone, Droplet, FlaskConical, Heart, HeartPulse,
-  Pill, ScanLine, Scissors, Siren, Smile, Stethoscope,
-};
+import { whatsappUrl } from "@/lib/data/clinic";
+import { serviceIcon } from "@/components/shared/serviceIcons";
 
 const CATEGORIES: ServiceCategory[] = ["urgencias", "especialidades", "diagnostico", "apoyo"];
 
@@ -22,7 +14,7 @@ type ServiceText = { name: string; desc: string; full: string; conditions: strin
 
 // Minúsculas y sin acentos, para que "fractura" encuentre "Fracturas" y "cirugia" encuentre "Cirugía".
 function normalize(text: string): string {
-  return text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
 
 export function ServicesDirectory() {
@@ -104,7 +96,7 @@ export function ServicesDirectory() {
       {results.length > 0 ? (
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {results.map(({ service, text }) => {
-            const Icon = ICON_MAP[service.icon] ?? Stethoscope;
+            const Icon = serviceIcon(service.icon);
             return (
               <Link
                 key={service.slug}
@@ -135,9 +127,7 @@ export function ServicesDirectory() {
           <p className="text-brand-muted">{t("noResults")}</p>
           <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
-              href={`https://wa.me/${CLINIC.whatsapp}?text=${encodeURIComponent(
-                `Hola, estoy buscando atención para: ${query.trim()}. ¿Me pueden orientar?`
-              )}`}
+              href={whatsappUrl(`Hola, estoy buscando atención para: ${query.trim()}. ¿Me pueden orientar?`)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors"

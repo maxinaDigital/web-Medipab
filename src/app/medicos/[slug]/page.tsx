@@ -5,7 +5,7 @@ import { getTranslations } from "next-intl/server";
 import { User, GraduationCap, Clock, CheckCircle2, MessageCircle, ChevronRight } from "lucide-react";
 import { doctors, getDoctorBySlug } from "@/lib/data/doctors";
 import { services } from "@/lib/data/services";
-import { CLINIC } from "@/lib/data/clinic";
+import { CLINIC, whatsappUrl } from "@/lib/data/clinic";
 
 // Solo existen los perfiles de doctors.ts; cualquier otro slug es 404.
 export const dynamicParams = false;
@@ -41,9 +41,7 @@ export default async function DoctorPage({ params }: { params: { slug: string } 
     doctor.servicesSlugs.includes(s.slug)
   );
 
-  const whatsappText = encodeURIComponent(
-    `Hola, me gustaría agendar una cita con ${doctor.name} (${doctor.specialty}).`
-  );
+  const whatsappText = `Hola, me gustaría agendar una cita con ${doctor.name} (${doctor.specialty}).`;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -157,7 +155,7 @@ export default async function DoctorPage({ params }: { params: { slug: string } 
                 {tc("immediateResponse")}
               </p>
               <a
-                href={`https://wa.me/${CLINIC.whatsapp}?text=${whatsappText}`}
+                href={whatsappUrl(whatsappText)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 bg-white text-primary font-semibold py-3 px-5 rounded-lg hover:bg-primary-light transition-colors w-full"

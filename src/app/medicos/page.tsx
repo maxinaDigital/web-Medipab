@@ -2,16 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { MessageCircle } from "lucide-react";
-import * as LucideIcons from "lucide-react";
 import { doctors } from "@/lib/data/doctors";
-import { services } from "@/lib/data/services";
-import { CLINIC } from "@/lib/data/clinic";
+import { SPECIALTY_SERVICES } from "@/lib/data/services";
+import { serviceIcon } from "@/components/shared/serviceIcons";
+import { CLINIC, whatsappUrl } from "@/lib/data/clinic";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { DoctorsDirectory } from "@/components/medicos/DoctorsDirectory";
-
-const specialties = services.filter(
-  (s) => s.category === "especialidades" || s.slug === "neonatologia-ucin"
-);
 
 export const metadata: Metadata = {
   title: "Médicos especialistas",
@@ -54,10 +50,8 @@ export default async function MedicosPage() {
             // Sin perfiles publicados todavía: directorio por especialidad + orientación por WhatsApp
             <div className="mt-12">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {specialties.map((s) => {
-                  const Icon =
-                    (LucideIcons as unknown as Record<string, React.ComponentType<{ className?: string }>>)[s.icon] ??
-                    LucideIcons.Stethoscope;
+                {SPECIALTY_SERVICES.map((s) => {
+                  const Icon = serviceIcon(s.icon);
                   return (
                     <Link
                       key={s.slug}
@@ -77,9 +71,7 @@ export default async function MedicosPage() {
               <div className="mt-10 bg-white rounded-2xl border border-brand-border p-8 text-center">
                 <p className="text-brand-muted max-w-xl mx-auto">{t("emptyNote")}</p>
                 <a
-                  href={`https://wa.me/${CLINIC.whatsapp}?text=${encodeURIComponent(
-                    `Hola, me gustaría que me orienten para elegir un especialista en ${CLINIC.name}.`
-                  )}`}
+                  href={whatsappUrl(`Hola, me gustaría que me orienten para elegir un especialista en ${CLINIC.name}.`)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-5 inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-6 py-3 rounded-xl font-semibold transition-colors"
