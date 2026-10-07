@@ -40,7 +40,7 @@ export function Header() {
           <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <span>{CLINIC.address.full}</span>
             <div className="flex items-center gap-4">
-              <LanguageSwitcher />
+              <LanguageSwitcher tone="dark" />
               <a
                 href={CLINIC.phoneHref}
                 className="flex items-center gap-1.5 hover:text-primary-light transition-colors"
@@ -120,7 +120,7 @@ export function Header() {
         aria-label="Menú de navegación móvil"
       >
         <div className="flex items-center justify-between px-5 h-16 border-b border-brand-border">
-          <Logo iconSize={36} />
+          <Logo height={40} />
           <button
             onClick={() => setMenuOpen(false)}
             className="p-2 rounded-md text-brand-muted hover:text-primary hover:bg-primary-light transition-colors"

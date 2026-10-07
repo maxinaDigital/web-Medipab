@@ -11,7 +11,7 @@ export function CtaBanner() {
   const t = useTranslations("ctaBannerSection");
 
   return (
-    <section className="py-20 bg-gradient-to-br from-[#0a4a5a] to-[#1a9090] overflow-hidden relative">
+    <section className="py-20 bg-gradient-to-br from-ocean-from to-ocean-to overflow-hidden relative">
       {/* Decorative circles */}
       <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/5 pointer-events-none" />
       <div className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-white/5 pointer-events-none" />
@@ -28,7 +28,7 @@ export function CtaBanner() {
           </p>
           <h2 className="font-heading text-3xl md:text-5xl font-bold text-white leading-tight mb-6">
             {t("title")}{" "}
-            <span className="text-[#7ae8e8]">{t("titleAccent")}</span>
+            <span className="text-glow-light">{t("titleAccent")}</span>
           </h2>
           <p className="text-white/75 text-lg max-w-2xl mx-auto mb-10">
             {t("description")}

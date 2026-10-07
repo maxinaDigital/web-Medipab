@@ -4,108 +4,82 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Institutional website for **Clínica Crystal**, a private medical clinic in Aguascalientes, México (founded May 2022). Built with Next.js 14 App Router + Tailwind CSS + shadcn/ui + TypeScript strict.
+Institutional website for **Medipab, Hospital de Especialidades**, in Pabellón de Arteaga, Aguascalientes, México.
+Duplicated from **Clínica Crystal Web** (`../Clinica Crystal Web`) — same stack, structure and deploy process; only identity, content and some controls differ. Work plan: `PLAN-MEDIPAB.md`.
+
+Built with Next.js 14 App Router + Tailwind CSS + shadcn/ui + TypeScript strict + next-intl.
 
 ## Commands
 
 ```bash
-npm run dev        # start dev server at localhost:3000
+npm run dev        # dev server (Claude preview: "medipab-dev" on port 3001)
 npm run build      # production build (run before any deploy)
 npm run lint       # ESLint check
-npx next-sitemap   # regenerate sitemap after adding pages
-```
-
-Run a single type-check without building:
-```bash
-npx tsc --noEmit
+npx tsc --noEmit   # type-check only
 ```
 
 ## Architecture
 
 ```
 src/
-  app/                    # Next.js App Router pages
-    layout.tsx            # root layout — fonts, metadata, JSON-LD MedicalOrganization
+  app/                    # App Router pages — root layout.tsx owns the single <main>; pages must not add another
+    layout.tsx            # fonts, metadata, JSON-LD
     page.tsx              # Home (composes /components/home/* sections)
-    nosotros/page.tsx
-    servicios/
-      page.tsx
-      [slug]/page.tsx     # generateStaticParams() from lib/data/services.ts
-    medicos/
-      page.tsx
-      [slug]/page.tsx     # generateStaticParams() from lib/data/doctors.ts
-    citas/page.tsx        # appointment form → WhatsApp redirect (no API route)
-    contacto/page.tsx
-    preguntas-frecuentes/page.tsx
+    nosotros/ servicios/[slug] medicos/[slug] citas/ contacto/ preguntas-frecuentes/
+    icon.png, apple-icon.png   # favicon / iOS icon (from logo/)
   components/
-    layout/               # Header, Footer, QuickActionsBar
-    home/                 # one file per home section (HeroSection, TrustSignals…)
-    shared/               # ServiceCard, DoctorCard, AppointmentButton, SectionTitle
+    layout/               # Header, Footer, Logo, LanguageSwitcher
+    home/                 # one file per home section
+    citas/                # AppointmentForm (→ WhatsApp)
+    shared/               # SectionTitle
     ui/                   # shadcn generated components — do not edit manually
-  lib/
-    data/
-      clinic.ts           # real address, hours, phone, trust stats
-      services.ts         # 8 services with slug, icon, faq[], etc.
-      doctors.ts          # 4 placeholder doctors with cedula, bio, schedule
-    validations/
-      appointmentSchema.ts  # Zod schema with MX phone regex
-    utils.ts              # shadcn cn() helper
-  styles/
-    globals.css           # CSS variables + shadcn token overrides
+  i18n/request.ts         # locale from NEXT_LOCALE cookie (es | en)
+  lib/data/               # clinic.ts, services.ts, doctors.ts — all institutional data lives here
+messages/                 # es.json, en.json (keep both in sync)
+logo/                     # master logo files (SVG + PNG) and the script that generated them
+public/images/            # logo SVGs served by the site
 ```
 
-## Real Clinic Data
+## Hospital data
 
-- **Address**: Av. del Parque #348, Col. Jardines del Parque, CP 20276, Aguascalientes, Ags.
-  (entre Av. del Lago y Av. Héroe de Nacozari)
-- **Phone placeholder**: (449) 000-0000
-- **Email placeholder**: contacto@clinicacrystal.com
-- **Hours**: 24/7, 365 días al año
-- **RFC**: CCR220517JW8
-- **Founded**: ~June 2025 (2 meses de inaugurada al momento del proyecto)
+Pending from the client (see Fase 0 in `PLAN-MEDIPAB.md`). Until then `src/lib/data/*` and `messages/*` still contain Crystal's placeholder content.
 
-### Key differentiators (always highlight in copy):
-- Clínica recién inaugurada (~2 meses) — NO presumir tiempo operando; enfocarse en médicos reconocidos y certificados
-- 3 quirófanos exclusivos de maternidad (fuerte enfoque neonatal)
-- 2 quirófanos de cirugía general
-- Imagenología propia (ultrasonido, rayos X)
-- Laboratorio clínico in-house
-- Cafetería y salas de estar en todos los niveles
+## Brand
 
-## Color System
-
-CSS variables defined in `globals.css`. Use them in Tailwind via the `brand-*` and `primary-*` token classes configured in `tailwind.config.ts`:
+Logo: `public/images/medipab-logo.svg` (light backgrounds), `medipab-logo-blanco.svg` (dark backgrounds), `medipab-icono.svg` (emblem only). Use the `<Logo variant="color|white" height={n} />` component; never recolor the logo with CSS filters.
 
 | Token class | Value | Use |
 |---|---|---|
-| `text-primary` | `#2AACAC` | Brand teal (matches logo) |
-| `bg-primary-light` | `#E0F7F7` | Soft section backgrounds |
-| `text-accent` | `#0EA5E9` | CTA buttons |
-| `bg-brand-bg` | `#F8FAFB` | Page background |
-| `text-brand-muted` | `#64748B` | Secondary text |
+| `primary` | `#14365A` | Navy from the MEDIPAB wordmark — headings, top bar, icons on light bg |
+| `primary-light` / `primary-dark` | `#E8F1F8` / `#0E2640` | Soft section bg / footer, hovers |
+| `accent` | `#1F7F78` | CTA buttons (white text passes AA) |
+| `accent-bright` | `#2B9E96` | Logo teal — decorative or large text only (fails AA on white for small text) |
+| `glow` / `glow-light` | `#5FCAD0` / `#8FE6EC` | Accents **on dark backgrounds only** (hero, footer, gradients) |
+| `ocean-from/via/to` | `#0E2640` → `#15466F` → `#1B7C86` | Institutional gradient (`bg-gradient-to-br from-ocean-from to-ocean-to`) |
+| `urgent` | `#DC2626` | Reserved for Urgencias controls |
+| `brand-bg` / `brand-muted` | `#F7FAFC` / `#64748B` | Page background / secondary text |
+
+On dark backgrounds never use `text-primary` (navy on navy) — use `text-white`, `text-glow` or `text-primary-light`.
 
 ## Conventions
 
-- **Fonts**: `font-heading` (Playfair Display) for h1–h6; body uses Inter via CSS variable `--font-inter`
-- **Components**: named exports only, no default exports
-- **File naming**: PascalCase for components, kebab-case for pages/routes
-- **Images**: always `next/image` with explicit `width`, `height`, and descriptive `alt` in Spanish
-- **Language**: all user-facing copy in Spanish (Mexico)
-- **Animations**: Framer Motion only for subtle entrance animations (fade-in, slight y-translate). No spins or bounces.
-- **Forms**: React Hook Form + Zod. The citas form submits via WhatsApp redirect (`wa.me/` link), no API route.
-- **No dark mode** in phase 1.
-- **Mobile-first**: design at `sm` breakpoint, expand upward.
-- **Accessibility**: `aria-label` on icon-only buttons; maintain WCAG AA contrast.
+- **Fonts**: `font-heading` = Montserrat (same geometric family as the logo) for h1–h6; body = Inter.
+- **No hardcoded hex colors** in components — add a token to `tailwind.config.ts` instead.
+- **Components**: named exports only, no default exports (except Next.js pages/layouts).
+- **File naming**: PascalCase for components, kebab-case for routes.
+- **Images**: `next/image` with explicit `width`, `height`, descriptive Spanish `alt`.
+- **Language**: Spanish (México) is default; English is the only other locale. Every new key goes to both `messages/es.json` and `messages/en.json`.
+- **Animations**: Framer Motion, subtle fade/slide entrances only.
+- **Forms**: React Hook Form + Zod; citas submits via `wa.me/` link, no API route.
+- **No dark mode** in phase 1. **Mobile-first**. `aria-label` on icon-only buttons; WCAG AA contrast.
 
 ## SEO Rules
 
-- Every page must export a `generateMetadata()` or static `metadata` object with `title` and `description`.
-- Dynamic service/doctor pages: `generateMetadata()` + `generateStaticParams()` from data files.
-- JSON-LD: `MedicalOrganization` in root layout; `MedicalService` on service pages; `Physician` on doctor pages.
-- URLs in Spanish: `/servicios/medicina-general`, `/medicos/dra-maria-lopez`.
+- Every page exports `metadata` / `generateMetadata()` with `title` and `description`.
+- Dynamic pages: `generateMetadata()` + `generateStaticParams()` from `lib/data`.
+- JSON-LD: organization in root layout (`Hospital` for Medipab); `MedicalService` on service pages; `Physician` on doctor pages.
+- URLs in Spanish.
 
-## shadcn Components Available
+## Deploy
 
-`button`, `card`, `input`, `textarea`, `select`, `checkbox`, `label`, `badge`, `separator`, `accordion`
-
-Add new ones with: `npx shadcn@latest add <component-name>`
+Same as Crystal: GitHub (org `maxinaDigital`) → Vercel, configured by `vercel.json`. Run `npm run build` green before pushing.

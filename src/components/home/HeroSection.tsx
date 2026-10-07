@@ -34,7 +34,7 @@ export function HeroSection() {
 
   return (
     <section
-      className="relative overflow-hidden bg-gradient-to-br from-[#0a4a5a] via-[#0F6B8E] to-[#1a9090] min-h-[88vh] flex items-center"
+      className="relative overflow-hidden bg-gradient-to-br from-ocean-from via-ocean-via to-ocean-to min-h-[88vh] flex items-center"
       aria-label="Bienvenida"
     >
       {/* Decorative background pattern */}
@@ -48,22 +48,20 @@ export function HeroSection() {
         }}
       />
 
-      {/* Large decorative crystal shape */}
+      {/* Large decorative emblem: concentric rings + medical cross */}
       <div
-        className="absolute right-0 top-0 bottom-0 w-1/2 opacity-[0.04] pointer-events-none hidden lg:block"
+        className="absolute right-0 top-0 bottom-0 w-1/2 opacity-[0.07] pointer-events-none hidden lg:block"
         aria-hidden="true"
       >
         <svg viewBox="0 0 400 600" className="h-full w-full" preserveAspectRatio="xMidYMid slice">
-          <polygon
-            points="200,40 380,140 380,460 200,560 20,460 20,140"
+          <circle cx="200" cy="300" r="190" fill="none" stroke="white" strokeWidth="2" />
+          <circle cx="200" cy="300" r="140" fill="none" stroke="white" strokeWidth="1" />
+          <path
+            d="M165 184h70a6 6 0 0 1 6 6v69h69a6 6 0 0 1 6 6v70a6 6 0 0 1-6 6h-69v69a6 6 0 0 1-6 6h-70a6 6 0 0 1-6-6v-69H90a6 6 0 0 1-6-6v-70a6 6 0 0 1 6-6h69v-69a6 6 0 0 1 6-6z"
             fill="none"
             stroke="white"
             strokeWidth="2"
           />
-          <line x1="200" y1="40" x2="200" y2="560" stroke="white" strokeWidth="1" />
-          <line x1="20" y1="140" x2="380" y2="140" stroke="white" strokeWidth="1" />
-          <line x1="200" y1="40" x2="20" y2="140" stroke="white" strokeWidth="1" />
-          <line x1="200" y1="40" x2="380" y2="140" stroke="white" strokeWidth="1" />
         </svg>
       </div>
 
@@ -78,7 +76,7 @@ export function HeroSection() {
             variants={fadeUp}
             className="inline-flex items-center gap-2 bg-white/15 text-white text-xs font-medium px-3 py-1.5 rounded-full mb-6 backdrop-blur-sm border border-white/20"
           >
-            <span className="w-2 h-2 rounded-full bg-[#4de8c2] inline-block" />
+            <span className="w-2 h-2 rounded-full bg-glow inline-block" />
             {t("badge")}
           </motion.div>
 
@@ -91,7 +89,7 @@ export function HeroSection() {
             className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white leading-tight mb-5"
           >
             {t("title")}{" "}
-            <span className="text-[#4de8c2]">{t("titleAccent")}</span>
+            <span className="text-glow">{t("titleAccent")}</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -143,7 +141,7 @@ export function HeroSection() {
                 key={badge}
                 className="flex items-center gap-1.5 text-xs text-white/75 bg-white/10 px-3 py-1.5 rounded-full border border-white/15"
               >
-                <CheckCircle2 size={13} className="text-[#4de8c2] shrink-0" />
+                <CheckCircle2 size={13} className="text-glow shrink-0" />
                 {badge}
               </li>
             ))}
@@ -184,7 +182,7 @@ export function HeroSection() {
         >
           <path
             d="M0 60 L0 30 Q360 0 720 30 Q1080 60 1440 30 L1440 60 Z"
-            fill="var(--color-bg, #F8FAFB)"
+            fill="var(--color-bg, #F7FAFC)"
           />
         </svg>
       </div>

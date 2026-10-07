@@ -30,33 +30,33 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-brand-text text-white" aria-label="Pie de página">
+    <footer className="bg-primary-dark text-white" aria-label="Pie de página">
       {/* Main footer */}
       <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Brand column */}
         <div className="space-y-5">
-          <Logo className="brightness-0 invert" iconSize={40} />
-          <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
+          <Logo variant="white" height={52} />
+          <p className="text-sm text-slate-300 leading-relaxed max-w-xs">
             {t("tagline")}
           </p>
           <div className="flex items-center gap-3">
             <button
               type="button"
-              className="p-2 rounded-full bg-white/10 hover:bg-primary transition-colors"
+              className="p-2 rounded-full bg-white/10 hover:bg-accent transition-colors"
               aria-label="Facebook de Clínica Crystal"
             >
               <Share2 size={16} />
             </button>
             <button
               type="button"
-              className="p-2 rounded-full bg-white/10 hover:bg-primary transition-colors"
+              className="p-2 rounded-full bg-white/10 hover:bg-accent transition-colors"
               aria-label="Instagram de Clínica Crystal"
             >
               <Camera size={16} />
             </button>
             <button
               type="button"
-              className="p-2 rounded-full bg-white/10 hover:bg-primary transition-colors"
+              className="p-2 rounded-full bg-white/10 hover:bg-accent transition-colors"
               aria-label="WhatsApp de Clínica Crystal"
             >
               <MessageCircle size={16} />
@@ -66,13 +66,13 @@ export function Footer() {
 
         {/* Services column */}
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">{t("services")}</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-4">{t("services")}</h3>
           <ul className="space-y-2" role="list">
             {SERVICES_LINKS.map(({ href, label }) => (
               <li key={href}>
                 <Link
                   href={href}
-                  className="text-sm text-gray-300 hover:text-primary transition-colors"
+                  className="text-sm text-slate-200 hover:text-glow transition-colors"
                 >
                   {label}
                 </Link>
@@ -83,13 +83,13 @@ export function Footer() {
 
         {/* Navigation column */}
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">{t("navigation")}</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-4">{t("navigation")}</h3>
           <ul className="space-y-2" role="list">
             {NAV_LINKS.map(({ href, label }) => (
               <li key={href}>
                 <Link
                   href={href}
-                  className="text-sm text-gray-300 hover:text-primary transition-colors"
+                  className="text-sm text-slate-200 hover:text-glow transition-colors"
                 >
                   {label}
                 </Link>
@@ -100,36 +100,36 @@ export function Footer() {
 
         {/* Contact column */}
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">{t("contact")}</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-4">{t("contact")}</h3>
           <ul className="space-y-4" role="list">
-            <li className="flex items-start gap-3 text-sm text-gray-300">
-              <MapPin size={15} className="shrink-0 mt-0.5 text-primary" />
+            <li className="flex items-start gap-3 text-sm text-slate-200">
+              <MapPin size={15} className="shrink-0 mt-0.5 text-glow" />
               <span>{CLINIC.address.full}</span>
             </li>
             <li>
               <a
                 href={CLINIC.phoneHref}
-                className="flex items-center gap-3 text-sm text-gray-300 hover:text-primary transition-colors"
+                className="flex items-center gap-3 text-sm text-slate-200 hover:text-glow transition-colors"
               >
-                <Phone size={15} className="shrink-0 text-primary" />
+                <Phone size={15} className="shrink-0 text-glow" />
                 {CLINIC.phone}
               </a>
             </li>
             <li>
               <a
                 href={`mailto:${CLINIC.email}`}
-                className="flex items-center gap-3 text-sm text-gray-300 hover:text-primary transition-colors"
+                className="flex items-center gap-3 text-sm text-slate-200 hover:text-glow transition-colors"
               >
-                <Mail size={15} className="shrink-0 text-primary" />
+                <Mail size={15} className="shrink-0 text-glow" />
                 {CLINIC.email}
               </a>
             </li>
-            <li className="flex items-start gap-3 text-sm text-gray-300">
-              <Clock size={15} className="shrink-0 mt-0.5 text-primary" />
+            <li className="flex items-start gap-3 text-sm text-slate-200">
+              <Clock size={15} className="shrink-0 mt-0.5 text-glow" />
               <div>
                 {CLINIC.hours.map(({ days, hours }) => (
                   <p key={days}>
-                    <span className="text-gray-400">{days}: </span>
+                    <span className="text-slate-300">{days}: </span>
                     {hours}
                   </p>
                 ))}
@@ -149,15 +149,15 @@ export function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
+        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
           <p>
             © {new Date().getFullYear()} {CLINIC.legalName}. {t("rights")}
           </p>
           <div className="flex items-center gap-4">
-            <Link href="/aviso-de-privacidad" className="hover:text-gray-300 transition-colors">
+            <Link href="/aviso-de-privacidad" className="hover:text-slate-200 transition-colors">
               Aviso de Privacidad
             </Link>
-            <Link href="/terminos-de-uso" className="hover:text-gray-300 transition-colors">
+            <Link href="/terminos-de-uso" className="hover:text-slate-200 transition-colors">
               Términos de Uso
             </Link>
           </div>

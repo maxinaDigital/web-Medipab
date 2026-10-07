@@ -1,7 +1,7 @@
 import { getRequestConfig } from "next-intl/server";
 import { cookies } from "next/headers";
 
-const VALID_LOCALES = ["es", "en", "ja"] as const;
+const VALID_LOCALES = ["es", "en"] as const;
 export type Locale = (typeof VALID_LOCALES)[number];
 
 export default getRequestConfig(async () => {

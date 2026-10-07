@@ -70,9 +70,9 @@ export default async function ServicePage({ params }: { params: { slug: string }
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <main className="pt-16 md:pt-[calc(2rem+4rem)]">
+      <div>
         {/* Hero */}
-        <section className="py-16 bg-gradient-to-br from-[#0a4a5a] to-[#1a9090]">
+        <section className="py-16 bg-gradient-to-br from-ocean-from to-ocean-to">
           <div className="max-w-5xl mx-auto px-4">
             <div className="flex items-center gap-2 text-white/60 text-sm mb-4">
               <Link href="/servicios" className="hover:text-white transition-colors">
@@ -161,7 +161,7 @@ export default async function ServicePage({ params }: { params: { slug: string }
           {/* Sidebar */}
           <div className="space-y-5">
             {/* CTA sticky card */}
-            <div className="bg-gradient-to-br from-[#0a4a5a] to-[#1a9090] rounded-2xl p-6 text-white">
+            <div className="bg-gradient-to-br from-ocean-from to-ocean-to rounded-2xl p-6 text-white">
               <h3 className="font-heading text-lg font-bold mb-2">{tc("readyToBook")}</h3>
               <p className="text-white/70 text-sm mb-5">
                 {tc("immediateResponse")}
@@ -212,7 +212,7 @@ export default async function ServicePage({ params }: { params: { slug: string }
             )}
           </div>
         </div>
-      </main>
+      </div>
     </>
   );
 }

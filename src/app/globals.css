@@ -5,7 +5,7 @@
 @layer base {
   :root {
     --font-inter: "Inter", system-ui, sans-serif;
-    --font-playfair: "Playfair Display", Georgia, serif;
+    --font-montserrat: "Montserrat", system-ui, sans-serif;
   }
 
   body {
@@ -14,7 +14,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-playfair), Georgia, serif;
+    font-family: var(--font-montserrat), system-ui, sans-serif;
   }
 }
 

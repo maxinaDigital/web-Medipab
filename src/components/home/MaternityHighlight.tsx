@@ -19,7 +19,7 @@ export function MaternityHighlight() {
 
   return (
     <section
-      className="py-20 bg-gradient-to-br from-[#0a4a5a] to-[#1a9090] overflow-hidden relative"
+      className="py-20 bg-gradient-to-br from-ocean-from to-ocean-to overflow-hidden relative"
       aria-labelledby="maternity-heading"
     >
       {/* Background decoration */}
@@ -40,7 +40,7 @@ export function MaternityHighlight() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#4de8c2] mb-4">
+          <p className="text-sm font-semibold uppercase tracking-widest text-glow mb-4">
             {t("eyebrow")}
           </p>
           <h2
@@ -48,7 +48,7 @@ export function MaternityHighlight() {
             className="text-3xl md:text-4xl font-heading font-bold text-white leading-tight mb-5"
           >
             {t("title")}{" "}
-            <span className="text-[#4de8c2]">{t("titleAccent")}</span>
+            <span className="text-glow">{t("titleAccent")}</span>
           </h2>
           <p className="text-white/75 text-lg leading-relaxed mb-8 max-w-lg">
             {t("description")}
@@ -85,7 +85,7 @@ export function MaternityHighlight() {
                 transition={{ delay: i * 0.1, duration: 0.45, ease: "easeOut" }}
                 className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-5 flex flex-col gap-3 hover:bg-white/15 transition-colors"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#4de8c2]/20 flex items-center justify-center text-[#4de8c2]">
+                <div className="w-10 h-10 rounded-xl bg-glow/20 flex items-center justify-center text-glow">
                   <Icon size={20} />
                 </div>
                 <div>

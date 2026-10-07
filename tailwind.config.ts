@@ -9,17 +9,36 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Azul marino del logotipo MEDIPAB
         primary: {
-          DEFAULT: "#2AACAC",
-          light: "#E0F7F7",
-          dark: "#1E8A8A",
+          DEFAULT: "#14365A",
+          light: "#E8F1F8",
+          dark: "#0E2640",
         },
+        // Verde azulado de "HOSPITAL DE ESPECIALIDADES" (DEFAULT oscurecido para texto blanco AA)
         accent: {
-          DEFAULT: "#0EA5E9",
-          dark: "#0284C7",
+          DEFAULT: "#1F7F78",
+          dark: "#17635D",
+          bright: "#2B9E96",
+        },
+        // Cian de la cruz del emblema — solo sobre fondos oscuros
+        glow: {
+          DEFAULT: "#5FCAD0",
+          light: "#8FE6EC",
+        },
+        // Degradado institucional (hero y bandas oscuras)
+        ocean: {
+          from: "#0E2640",
+          via: "#15466F",
+          to: "#1B7C86",
+        },
+        // Reservado para Urgencias
+        urgent: {
+          DEFAULT: "#DC2626",
+          dark: "#B91C1C",
         },
         brand: {
-          bg: "#F8FAFB",
+          bg: "#F7FAFC",
           surface: "#FFFFFF",
           border: "#E2E8F0",
           text: "#1E293B",
@@ -30,7 +49,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        heading: ["var(--font-playfair)", "Georgia", "serif"],
+        heading: ["var(--font-montserrat)", "system-ui", "sans-serif"],
       },
       borderRadius: {
         "2xl": "1rem",

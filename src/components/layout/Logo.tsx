@@ -2,34 +2,34 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { CLINIC } from "@/lib/data/clinic";
+
+// Proporción del logotipo completo (viewBox 554 × 174)
+const LOGO_RATIO = 554 / 174;
 
 type LogoProps = {
   className?: string;
-  iconSize?: number;
+  height?: number;
+  variant?: "color" | "white";
 };
 
-export function Logo({ className = "", iconSize = 44 }: LogoProps) {
+export function Logo({ className = "", height = 52, variant = "color" }: LogoProps) {
+  const src = variant === "white" ? "/images/medipab-logo-blanco.svg" : "/images/medipab-logo.svg";
+
   return (
     <Link
       href="/"
-      className={`flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md ${className}`}
-      aria-label="Clínica Crystal — Ir al inicio"
+      className={`inline-flex items-center shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md ${className}`}
+      aria-label={`${CLINIC.name} — Ir al inicio`}
     >
       <Image
-        src="/images/diamante.png"
-        alt=""
-        width={iconSize}
-        height={iconSize}
+        src={src}
+        alt={`Logotipo de ${CLINIC.name}, Hospital de Especialidades`}
+        width={Math.round(height * LOGO_RATIO)}
+        height={height}
         priority
-        className="object-contain shrink-0"
+        className="object-contain"
       />
-      <span
-        className="font-sans leading-none whitespace-nowrap uppercase"
-        style={{ fontSize: iconSize * 0.4 }}
-      >
-        <span className="font-medium tracking-wide text-brand-muted">Clínica </span>
-        <span className="font-bold tracking-wide text-primary">Crystal</span>
-      </span>
     </Link>
   );
 }

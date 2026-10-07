@@ -1,4 +1,5 @@
 // Rebuilds the Medipab logo as clean vector art, using the pixelated logo.png as a measured reference.
+// Uso (fuera del proyecto, en una carpeta aparte): npm i opentype.js sharp @fontsource/montserrat && node _generador-logo.js <carpeta-salida>
 const fs = require("fs");
 const opentype = require("opentype.js");
 const sharp = require("sharp");
