@@ -6,6 +6,7 @@ import { User, GraduationCap, Clock, CheckCircle2, MessageCircle, ChevronRight }
 import { doctors, getDoctorBySlug } from "@/lib/data/doctors";
 import { services } from "@/lib/data/services";
 import { CLINIC, whatsappUrl } from "@/lib/data/clinic";
+import { jsonLdHtml } from "@/lib/jsonLd";
 
 // Solo existen los perfiles de doctors.ts; cualquier otro slug es 404.
 export const dynamicParams = false;
@@ -55,7 +56,7 @@ export default async function DoctorPage({ params }: { params: { slug: string } 
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml(jsonLd) }}
       />
       <div>
         {/* Hero */}

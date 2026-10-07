@@ -100,4 +100,12 @@ On dark backgrounds never use `text-primary` (navy on navy) — use `text-white`
 
 Same as Crystal: GitHub (org `maxinaDigital`) → Vercel, configured by `vercel.json`. Run `npm run build` green before pushing. Steps and env vars (`NEXT_PUBLIC_SITE_URL`) in README.
 
-`assertLaunchReady()` (clinic.ts, called from the root layout) makes the **production** Vercel build fail while `CLINIC.whatsapp` is the placeholder; preview deployments are not blocked. Do not remove it to unblock a deploy — set the real number.
+`assertLaunchReady()` (clinic.ts, called from the root layout) makes the **production** Vercel build fail while the WhatsApp number or the email are placeholders, or `NEXT_PUBLIC_SITE_URL` is unset; preview deployments are not blocked. Do not remove it to unblock a deploy — set the real values. Note: medipab.com.mx already exists and serves an online store (checked 2026-10-07); confirm with the client whether it is theirs before using that domain or email.
+
+## Security
+
+- Security headers live in `next.config.mjs` (nosniff, Referrer-Policy, frame-ancestors none, Permissions-Policy).
+- `images.unoptimized: true`: the site only uses local SVGs, and disabling `/_next/image` removes the Next 14 image-optimizer advisories. Keep it unless a newer Next is adopted.
+- JSON-LD must go through `jsonLdHtml()` (`src/lib/jsonLd.ts`), never raw `JSON.stringify` inside `dangerouslySetInnerHTML`.
+- `shadcn` is a CLI (devDependency); never import it from app code.
+- Known residual risk: Next 14.2.x has unpatched advisories (RSC DoS / cache poisoning) fixed only in Next 15.5.24+.

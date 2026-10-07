@@ -7,6 +7,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { EmergencyButton } from "@/components/layout/EmergencyButton";
 import { CLINIC, assertLaunchReady } from "@/lib/data/clinic";
+import { jsonLdHtml } from "@/lib/jsonLd";
 
 // Bloquea el deploy de producción mientras haya datos de contacto de relleno (ver clinic.ts).
 assertLaunchReady();
@@ -98,7 +99,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdHtml(jsonLd) }}
         />
       </head>
       <body className="antialiased">
