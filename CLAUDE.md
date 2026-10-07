@@ -98,4 +98,6 @@ On dark backgrounds never use `text-primary` (navy on navy) — use `text-white`
 
 ## Deploy
 
-Same as Crystal: GitHub (org `maxinaDigital`) → Vercel, configured by `vercel.json`. Run `npm run build` green before pushing.
+Same as Crystal: GitHub (org `maxinaDigital`) → Vercel, configured by `vercel.json`. Run `npm run build` green before pushing. Steps and env vars (`NEXT_PUBLIC_SITE_URL`) in README.
+
+`assertLaunchReady()` (clinic.ts, called from the root layout) makes the **production** Vercel build fail while `CLINIC.whatsapp` is the placeholder; preview deployments are not blocked. Do not remove it to unblock a deploy — set the real number.
