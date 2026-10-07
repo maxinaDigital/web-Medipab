@@ -2,11 +2,19 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import * as LucideIcons from "lucide-react";
-import { ChevronRight, MessageCircle, Search, X } from "lucide-react";
+import {
+  Ambulance, BedSingle, Baby, Bone, ChevronRight, Droplet, FlaskConical, Heart, HeartPulse,
+  MessageCircle, Pill, ScanLine, Scissors, Search, Siren, Smile, Stethoscope, X,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
 import { services, type ServiceCategory } from "@/lib/data/services";
 import { CLINIC } from "@/lib/data/clinic";
+
+// Importación explícita: `import * as` en un componente cliente mete toda la librería de íconos al bundle.
+const ICON_MAP: Record<string, React.ElementType> = {
+  Ambulance, BedSingle, Baby, Bone, Droplet, FlaskConical, Heart, HeartPulse,
+  Pill, ScanLine, Scissors, Siren, Smile, Stethoscope,
+};
 
 const CATEGORIES: ServiceCategory[] = ["urgencias", "especialidades", "diagnostico", "apoyo"];
 
@@ -96,9 +104,7 @@ export function ServicesDirectory() {
       {results.length > 0 ? (
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {results.map(({ service, text }) => {
-            const Icon =
-              (LucideIcons as unknown as Record<string, React.ComponentType<{ className?: string }>>)[service.icon] ??
-              LucideIcons.Stethoscope;
+            const Icon = ICON_MAP[service.icon] ?? Stethoscope;
             return (
               <Link
                 key={service.slug}

@@ -74,7 +74,7 @@ export function Header() {
               <li key={href}>
                 <Link
                   href={href}
-                  className="px-3 py-2 text-sm text-brand-text font-medium rounded-md hover:text-primary hover:bg-primary-light transition-colors"
+                  className="whitespace-nowrap px-3 py-2 text-sm text-brand-text font-medium rounded-md hover:text-primary hover:bg-primary-light transition-colors"
                 >
                   {label}
                 </Link>
@@ -86,14 +86,14 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-3">
             <a
               href={CLINIC.phoneHref}
-              className="flex items-center gap-1.5 text-sm text-brand-muted hover:text-primary transition-colors"
+              className="hidden xl:flex items-center gap-1.5 whitespace-nowrap text-sm text-brand-muted hover:text-primary transition-colors"
             >
               <Phone size={15} />
               <span>{CLINIC.phone}</span>
             </a>
             <Link
               href="/citas"
-              className="flex items-center gap-2 bg-accent text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-accent-dark transition-colors shadow-sm"
+              className="flex items-center gap-2 whitespace-nowrap bg-accent text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-accent-dark transition-colors shadow-sm"
             >
               <CalendarDays size={16} />
               {t("nav.appointment")}
