@@ -18,7 +18,7 @@ export function LocationMap() {
   ];
 
   return (
-    <section className="py-20 bg-brand-bg">
+    <section className="py-20 bg-brand-bg overflow-x-clip">
       <div className="max-w-6xl mx-auto px-4">
         <SectionTitle
           eyebrow={t("eyebrow")}
