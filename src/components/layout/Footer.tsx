@@ -17,6 +17,13 @@ export function Footer() {
     .filter((s) => s.featured)
     .map((s) => ({ href: `/servicios/${s.slug}`, label: ts(`items.${s.slug}.name`) }));
 
+  // Solo las redes con URL configurada en clinic.ts
+  const SOCIAL_LINKS = [
+    { href: CLINIC.social.facebook, label: "Facebook", Icon: Share2 },
+    { href: CLINIC.social.instagram, label: "Instagram", Icon: Camera },
+    { href: CLINIC.social.whatsapp, label: "WhatsApp", Icon: MessageCircle },
+  ].filter((link) => link.href);
+
   const NAV_LINKS = [
     { href: "/nosotros",              label: tn("about") },
     { href: "/medicos",               label: tn("doctors") },
@@ -36,27 +43,18 @@ export function Footer() {
             {t("tagline")}
           </p>
           <div className="flex items-center gap-3">
-            <button
-              type="button"
-              className="p-2 rounded-full bg-white/10 hover:bg-accent transition-colors"
-              aria-label={`Facebook de ${CLINIC.name}`}
-            >
-              <Share2 size={16} />
-            </button>
-            <button
-              type="button"
-              className="p-2 rounded-full bg-white/10 hover:bg-accent transition-colors"
-              aria-label={`Instagram de ${CLINIC.name}`}
-            >
-              <Camera size={16} />
-            </button>
-            <button
-              type="button"
-              className="p-2 rounded-full bg-white/10 hover:bg-accent transition-colors"
-              aria-label={`WhatsApp de ${CLINIC.name}`}
-            >
-              <MessageCircle size={16} />
-            </button>
+            {SOCIAL_LINKS.map(({ href, label, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-white/10 hover:bg-accent transition-colors"
+                aria-label={`${label} de ${CLINIC.name}`}
+              >
+                <Icon size={16} />
+              </a>
+            ))}
           </div>
         </div>
 
@@ -151,10 +149,7 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-4">
             <Link href="/aviso-de-privacidad" className="hover:text-slate-200 transition-colors">
-              Aviso de Privacidad
-            </Link>
-            <Link href="/terminos-de-uso" className="hover:text-slate-200 transition-colors">
-              Términos de Uso
+              {t("privacy")}
             </Link>
           </div>
         </div>

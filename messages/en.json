@@ -43,6 +43,7 @@
     "howItWorksShort": "How does it work?",
     "howItWorksSteps": "1. Fill out the form with your details\n2. When you submit it, WhatsApp opens with your request\n3. Our team confirms your appointment",
     "privacy": "required",
+    "privacyLink": "Read the privacy notice",
     "faq": "Frequently asked questions",
     "needThisService": "Need this service?",
     "noAppointmentNeeded": "No appointment needed. Call us or come directly to the hospital.",
@@ -320,7 +321,8 @@
     "navigation": "Navigation",
     "contact": "Contact",
     "rights": "All rights reserved.",
-    "address": "Address"
+    "address": "Address",
+    "privacy": "Privacy notice"
   },
   "aboutPage": {
     "eyebrow": "Who we are",
@@ -449,7 +451,7 @@
       {"q":"What are the hospital's hours?","a":"The emergency room and inpatient care operate 24 hours a day, every day. The outpatient clinic is by appointment, according to each specialist's schedule."},
       {"q":"Are the rooms private?","a":"Yes. Every inpatient has their own room."},
       {"q":"Do you have a pharmacy?","a":"Yes, inside the hospital and open to the general public."},
-      {"q":"Where are you located?","a":"In Pabellón de Arteaga, Aguascalientes. See our exact location and directions on the Contact page."}
+      {"q":"Where are you located?","a":"On Aquiles Serdán street, Zona Centro, ZIP 20670, Pabellón de Arteaga, Ags. Our Contact page has the map and directions."}
     ],
     "cat3Items": [
       {"q":"What services do you offer?","a":"24-hour emergency room, inpatient care, adult intensive care, NICU, obstetrics and gynecology, pediatrics, general surgery, orthopedics and trauma, specialty outpatient clinic, clinical laboratory, medical imaging, blood bank, pharmacy and ambulance."},
@@ -462,6 +464,12 @@
       {"q":"What payment methods do you accept?","a":"We'll let you know the costs and payment methods when you book or at admissions."},
       {"q":"Do you issue invoices?","a":"Yes, we issue Mexican electronic invoices (CFDI). Request one at the cashier with your tax information."}
     ]
+  },
+  "notFound": {
+    "title": "We couldn’t find this page",
+    "description": "The address may have changed or no longer exists.",
+    "home": "Go to home",
+    "services": "See services"
   },
   "doctors": {},
   "contactPage": {

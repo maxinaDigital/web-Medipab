@@ -48,6 +48,7 @@ public/images/            # logo SVGs served by the site
 Source: interview with the medical director (2026-10-03). Confirmed facts the copy relies on:
 
 - Specialty hospital in operation in **Pabellón de Arteaga, Ags.**; single site, no branches.
+- Address and main phone from the hospital's Google Maps listing (https://maps.app.goo.gl/sHdqc2kNK48Wzm8WA): Aquiles Serdán, Zona Centro, CP 20670; (465) 111-1202; open 24 h; coordinates in `CLINIC.geo`.
 - **5 private rooms (1 bed each) + 3 emergency beds.**
 - Services (14, one entry each in `lib/data/services.ts`): Urgencias 24 h, Hospitalización, UCI adultos, UCIN, Ginecobstetricia, Pediatría, Cirugía general, Ortopedia/trauma, Consulta externa, Laboratorio, Imagenología, Banco de sangre, Farmacia al público, Ambulancia.
 - **~52 external doctors** managed by the hospital → copy says "más de 50".
@@ -55,7 +56,7 @@ Source: interview with the medical director (2026-10-03). Confirmed facts the co
 
 Do not invent facts that are not in that list (number of operating rooms, imaging modalities, hours other than 24 h ER/inpatient, fees, years of operation). The interview also contains internal IT/commercial notes; none of that goes on the site.
 
-**Placeholders still pending from the client** (grep `PENDIENTE`): address (street, colonia, CP), phones (main, emergency, WhatsApp), email, domain, legal name, social media, doctor profiles (`doctors.ts` is intentionally empty — never add sample doctors), real testimonials (`Testimonials.tsx` hides itself while empty), mission/vision approval.
+**Placeholders still pending from the client** (grep `PENDIENTE`): street number, direct emergency line (the switchboard is used meanwhile), WhatsApp number (all WhatsApp CTAs point to a placeholder), email, domain (`CLINIC.siteUrl` feeds metadata, sitemap and robots), legal name, social media (footer only renders networks with a URL), **legal review of `/aviso-de-privacidad`** (draft), doctor profiles (`doctors.ts` is intentionally empty — never add sample doctors), real testimonials (`Testimonials.tsx` hides itself while empty), mission/vision approval.
 
 ## Brand
 
@@ -87,6 +88,8 @@ On dark backgrounds never use `text-primary` (navy on navy) — use `text-white`
 - **No dark mode** in phase 1. **Mobile-first**. `aria-label` on icon-only buttons; WCAG AA contrast.
 
 ## SEO Rules
+
+- `app/sitemap.ts` and `app/robots.ts` (Next native) build /sitemap.xml and /robots.txt from `lib/data` — new pages must be added to `sitemap.ts`. The `next-sitemap` package inherited from Crystal is not used.
 
 - Every page exports `metadata` / `generateMetadata()` with `title` and `description`.
 - Dynamic pages: `generateMetadata()` + `generateStaticParams()` from `lib/data`.

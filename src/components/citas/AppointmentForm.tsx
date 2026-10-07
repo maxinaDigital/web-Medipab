@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2 } from "lucide-react";
@@ -267,7 +268,11 @@ export function AppointmentForm({ initialService, initialDoctor }: AppointmentFo
             className="w-4 h-4 rounded border-brand-border text-primary focus:ring-primary mt-0.5"
           />
           <span className="text-sm text-brand-muted">
-            {tc("privacyConsent")} <span className="text-red-500">*</span>
+            {tc("privacyConsent")}{" "}
+            <Link href="/aviso-de-privacidad" target="_blank" className="text-primary hover:underline">
+              {tc("privacyLink")}
+            </Link>{" "}
+            <span className="text-red-500">*</span>
           </span>
         </label>
         {errors.acceptsPrivacy && (

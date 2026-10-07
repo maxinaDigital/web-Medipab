@@ -72,6 +72,8 @@ const jsonLd = {
     ...(CLINIC.address.postalCode ? { postalCode: CLINIC.address.postalCode } : {}),
     addressCountry: "MX",
   },
+  geo: { "@type": "GeoCoordinates", latitude: CLINIC.geo.latitude, longitude: CLINIC.geo.longitude },
+  hasMap: CLINIC.address.googleMapsUrl,
   areaServed: ["Pabellón de Arteaga", "Rincón de Romos", "San José de Gracia", "Tepezalá", "Cosío"],
   medicalSpecialty: ["Emergency", "Obstetric", "Pediatric", "Surgical"],
   openingHoursSpecification: [

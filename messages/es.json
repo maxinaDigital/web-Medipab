@@ -43,6 +43,7 @@
     "howItWorksShort": "¿Cómo funciona?",
     "howItWorksSteps": "1. Llena el formulario con tus datos\n2. Al enviarlo, se abrirá WhatsApp con tu solicitud\n3. Nuestro equipo te confirma la cita",
     "privacy": "required",
+    "privacyLink": "Ver aviso de privacidad",
     "faq": "Preguntas frecuentes",
     "needThisService": "¿Necesitas este servicio?",
     "noAppointmentNeeded": "No necesitas cita. Llámanos o acude directamente al hospital.",
@@ -320,7 +321,8 @@
     "navigation": "Navegación",
     "contact": "Contacto",
     "rights": "Todos los derechos reservados.",
-    "address": "Dirección"
+    "address": "Dirección",
+    "privacy": "Aviso de privacidad"
   },
   "aboutPage": {
     "eyebrow": "Quiénes somos",
@@ -449,7 +451,7 @@
       {"q":"¿Cuál es el horario del hospital?","a":"Urgencias y hospitalización funcionan las 24 horas, todos los días. La consulta externa es con cita, según el horario de cada especialista."},
       {"q":"¿Las habitaciones son individuales?","a":"Sí. Cada paciente hospitalizado cuenta con su propia habitación."},
       {"q":"¿Tienen farmacia?","a":"Sí, dentro del hospital, abierta al público en general."},
-      {"q":"¿Dónde están ubicados?","a":"En Pabellón de Arteaga, Aguascalientes. Consulta la ubicación exacta y cómo llegar en nuestra página de Contacto."}
+      {"q":"¿Dónde están ubicados?","a":"En calle Aquiles Serdán, Zona Centro, CP 20670, Pabellón de Arteaga, Ags. En nuestra página de Contacto encuentras el mapa y cómo llegar."}
     ],
     "cat3Items": [
       {"q":"¿Qué servicios tienen?","a":"Urgencias 24 horas, hospitalización, terapia intensiva adultos, UCIN, ginecobstetricia, pediatría, cirugía general, ortopedia y traumatología, consulta externa de especialidades, laboratorio clínico, imagenología, banco de sangre, farmacia y ambulancia."},
@@ -462,6 +464,12 @@
       {"q":"¿Cuáles son las formas de pago?","a":"Te informamos los costos y las formas de pago al agendar o en admisión."},
       {"q":"¿Emiten factura?","a":"Sí, emitimos factura electrónica (CFDI). Solicítala en caja con tus datos fiscales."}
     ]
+  },
+  "notFound": {
+    "title": "No encontramos esta página",
+    "description": "Es posible que la dirección haya cambiado o ya no exista.",
+    "home": "Ir al inicio",
+    "services": "Ver servicios"
   },
   "doctors": {},
   "contactPage": {

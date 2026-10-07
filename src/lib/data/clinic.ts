@@ -1,5 +1,6 @@
 // Datos institucionales de Medipab.
-// Fuente: entrevista con Dirección Médica (2026-10-03).
+// Fuentes: entrevista con Dirección Médica (2026-10-03) y ficha de Google Maps del hospital
+// (https://maps.app.goo.gl/sHdqc2kNK48Wzm8WA, consultada 2026-10-07).
 // Todo lo marcado PENDIENTE es un placeholder que el cliente debe confirmar antes de publicar
 // (lista completa en CLAUDE.md → "Hospital data").
 
@@ -7,26 +8,26 @@ export const CLINIC = {
   name: "Medipab",
   fullName: "Medipab Hospital de Especialidades",
   legalName: "Medipab Hospital de Especialidades", // PENDIENTE: razón social
-  phone: "(465) 000-0000", // PENDIENTE
-  phoneHref: "tel:+524650000000", // PENDIENTE
-  emergencyPhone: "(465) 000-0000", // PENDIENTE: línea directa de Urgencias
-  emergencyPhoneHref: "tel:+524650000000", // PENDIENTE
-  whatsapp: "524650000000", // PENDIENTE
+  phone: "(465) 111-1202", // Google Maps
+  phoneHref: "tel:+524651111202",
+  // PENDIENTE: confirmar si Urgencias tiene línea directa; mientras, el conmutador (abierto 24 h)
+  emergencyPhone: "(465) 111-1202",
+  emergencyPhoneHref: "tel:+524651111202",
+  whatsapp: "524650000000", // PENDIENTE: número de WhatsApp del hospital
   email: "contacto@medipab.com.mx", // PENDIENTE
   siteUrl: "https://medipab.com.mx", // PENDIENTE: dominio
+  geo: { latitude: 22.1489027, longitude: -102.2790758 },
   address: {
-    street: "", // PENDIENTE: calle y número
-    neighborhood: "", // PENDIENTE: colonia
+    street: "Aquiles Serdán", // PENDIENTE: número exterior (Google Maps no lo muestra)
+    neighborhood: "Zona Centro",
     city: "Pabellón de Arteaga",
     state: "Aguascalientes",
     country: "México",
-    postalCode: "", // PENDIENTE
+    postalCode: "20670",
     between: "", // PENDIENTE: entre calles / referencia
-    full: "Pabellón de Arteaga, Aguascalientes", // PENDIENTE: dirección completa
-    googleMapsUrl:
-      "https://www.google.com/maps/search/Pabell%C3%B3n+de+Arteaga,+Aguascalientes,+M%C3%A9xico",
-    googleMapsEmbed:
-      "https://maps.google.com/maps?q=Pabell%C3%B3n+de+Arteaga,+Aguascalientes,+M%C3%A9xico&output=embed&hl=es",
+    full: "Aquiles Serdán, Zona Centro, CP 20670, Pabellón de Arteaga, Ags.",
+    googleMapsUrl: "https://maps.app.goo.gl/sHdqc2kNK48Wzm8WA",
+    googleMapsEmbed: "https://maps.google.com/maps?q=22.1489027,-102.2790758&z=17&output=embed&hl=es",
   },
   social: {
     facebook: "", // PENDIENTE
@@ -50,7 +51,7 @@ export function directionsUrl(fromTown: string): string {
   const params = new URLSearchParams({
     api: "1",
     origin: `${fromTown}, Aguascalientes, México`,
-    destination: `${CLINIC.fullName}, ${CLINIC.address.full}, México`,
+    destination: `${CLINIC.geo.latitude},${CLINIC.geo.longitude}`,
     travelmode: "driving",
   });
   return `https://www.google.com/maps/dir/?${params.toString()}`;
