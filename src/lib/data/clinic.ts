@@ -7,9 +7,6 @@
 // Número de relleno heredado del arranque del proyecto. Mientras siga aquí, el build de producción falla
 // (ver assertLaunchReady) para que el formulario no envíe datos de pacientes a un número ajeno.
 const WHATSAPP_PLACEHOLDER = "524650000000";
-// Correo provisional: medipab.com.mx existe y hoy sirve una tienda en línea (verificado 2026-10-07);
-// hasta confirmar que el dominio es del hospital, no se publica a producción con este correo.
-const EMAIL_PLACEHOLDER = "contacto@medipab.com.mx";
 
 export const CLINIC = {
   name: "Medipab",
@@ -21,9 +18,11 @@ export const CLINIC = {
   emergencyPhone: "465 1111 202",
   emergencyPhoneHref: "tel:+524651111202",
   whatsapp: WHATSAPP_PLACEHOLDER, // PENDIENTE: número de WhatsApp del hospital (52 + 10 dígitos)
-  email: EMAIL_PLACEHOLDER, // PENDIENTE: correo real del hospital
-  // Dominio público: se configura con NEXT_PUBLIC_SITE_URL en Vercel. PENDIENTE: confirmar dominio
-  siteUrl: (process.env.NEXT_PUBLIC_SITE_URL || "https://medipab.com.mx").replace(/\/$/, ""),
+  // El hospital no tiene correo propio: se usa el de Maxina Digital (indicado por el usuario, 2026-10-07)
+  email: "contacto@maxinadigital.com",
+  // Dominio confirmado por el usuario (registrado 2026-10-05, DNS en Cloudflare).
+  // NEXT_PUBLIC_SITE_URL solo hace falta para apuntar a otro dominio (p. ej. un entorno de pruebas).
+  siteUrl: (process.env.NEXT_PUBLIC_SITE_URL || "https://www.medipab.com").replace(/\/$/, ""),
   geo: { latitude: 22.1489027, longitude: -102.2790758 },
   address: {
     street: "Aquiles Serdán", // PENDIENTE: número exterior (Google Maps no lo muestra)
@@ -58,10 +57,6 @@ export function assertLaunchReady(): void {
   const problems = [
     CLINIC.whatsapp === WHATSAPP_PLACEHOLDER &&
       "CLINIC.whatsapp sigue siendo el número de relleno: configura el WhatsApp real del hospital.",
-    CLINIC.email === EMAIL_PLACEHOLDER &&
-      "CLINIC.email sigue siendo el correo de relleno: medipab.com.mx ya existe (tienda en línea) y no está confirmado que sea del hospital.",
-    !process.env.NEXT_PUBLIC_SITE_URL &&
-      "Falta NEXT_PUBLIC_SITE_URL en Vercel: sin ella el sitemap y los metadatos apuntan a un dominio no confirmado.",
   ].filter(Boolean);
   if (problems.length > 0) {
     throw new Error(`No se puede publicar a producción:\n- ${problems.join("\n- ")}`);

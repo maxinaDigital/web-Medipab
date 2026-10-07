@@ -56,7 +56,9 @@ Source: interview with the medical director (2026-10-03). Confirmed facts the co
 
 Do not invent facts that are not in that list (number of operating rooms, imaging modalities, hours other than 24 h ER/inpatient, fees, years of operation). The interview also contains internal IT/commercial notes; none of that goes on the site.
 
-**Placeholders still pending from the client** (grep `PENDIENTE`): street number, direct emergency line (the switchboard is used meanwhile), WhatsApp number (all WhatsApp CTAs point to a placeholder), email, domain (`CLINIC.siteUrl` feeds metadata, sitemap and robots), legal name, social media (footer only renders networks with a URL), **legal review of `/aviso-de-privacidad`** (draft), doctor profiles (`doctors.ts` is intentionally empty — never add sample doctors), real testimonials (`Testimonials.tsx` hides itself while empty), mission/vision approval.
+- Domain **www.medipab.com** (registered 2026-10-05, DNS on Cloudflare) is the default `CLINIC.siteUrl`. The hospital has no email of its own: the public contact (and ARCO contact in the privacy notice) is **contacto@maxinadigital.com**, per the user. medipab.com.mx is an unrelated online store — do not use it.
+
+**Placeholders still pending from the client** (grep `PENDIENTE`): street number, direct emergency line (the switchboard is used meanwhile), WhatsApp number (all WhatsApp CTAs point to a placeholder), legal name, social media (footer only renders networks with a URL), **legal review of `/aviso-de-privacidad`** (draft), doctor profiles (`doctors.ts` is intentionally empty — never add sample doctors), real testimonials (`Testimonials.tsx` hides itself while empty), mission/vision approval.
 
 ## Brand
 
@@ -100,7 +102,7 @@ On dark backgrounds never use `text-primary` (navy on navy) — use `text-white`
 
 Same as Crystal: GitHub (org `maxinaDigital`) → Vercel, configured by `vercel.json`. Run `npm run build` green before pushing. Steps and env vars (`NEXT_PUBLIC_SITE_URL`) in README.
 
-`assertLaunchReady()` (clinic.ts, called from the root layout) makes the **production** Vercel build fail while the WhatsApp number or the email are placeholders, or `NEXT_PUBLIC_SITE_URL` is unset; preview deployments are not blocked. Do not remove it to unblock a deploy — set the real values. Note: medipab.com.mx already exists and serves an online store (checked 2026-10-07); confirm with the client whether it is theirs before using that domain or email.
+`assertLaunchReady()` (clinic.ts, called from the root layout) makes the **production** Vercel build fail while the WhatsApp number is the placeholder; preview deployments are not blocked. Do not remove it to unblock a deploy — set the real number.
 
 ## Security
 
