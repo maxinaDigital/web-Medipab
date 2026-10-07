@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { ChevronRight } from "lucide-react";
-import * as LucideIcons from "lucide-react";
-import { services } from "@/lib/data/services";
 import { SectionTitle } from "@/components/shared/SectionTitle";
+import { ServicesDirectory } from "@/components/servicios/ServicesDirectory";
 
 export const metadata: Metadata = {
   title: "Servicios médicos",
@@ -14,8 +12,6 @@ export const metadata: Metadata = {
 
 export default async function ServiciosPage() {
   const t = await getTranslations("servicesPage");
-  const tc = await getTranslations("common");
-  const ts = await getTranslations("servicesSection");
 
   return (
     <div>
@@ -44,35 +40,7 @@ export default async function ServiciosPage() {
             titleAccent={t("listTitleAccent")}
             centered
           />
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service) => {
-              const IconComponent = (LucideIcons as unknown as Record<string, React.ComponentType<{ className?: string }>>)[
-                service.icon
-              ] ?? LucideIcons.Stethoscope;
-              const name = ts(`items.${service.slug}.name`);
-              const desc = ts(`items.${service.slug}.desc`);
-              return (
-                <Link
-                  key={service.slug}
-                  href={`/servicios/${service.slug}`}
-                  className="group bg-white rounded-2xl border border-brand-border p-7 hover:border-primary hover:shadow-lg transition-all duration-300"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-primary-light flex items-center justify-center mb-5 group-hover:bg-primary transition-colors duration-300">
-                    <IconComponent className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
-                  </div>
-                  <h2 className="font-heading text-xl font-semibold text-brand-text mb-2 group-hover:text-primary transition-colors">
-                    {name}
-                  </h2>
-                  <p className="text-brand-muted text-sm leading-relaxed mb-4">
-                    {desc}
-                  </p>
-                  <span className="inline-flex items-center gap-1 text-sm font-medium text-primary">
-                    {tc("seeDetails")} <ChevronRight className="w-4 h-4" />
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
+          <ServicesDirectory />
         </div>
       </section>
 

@@ -56,7 +56,7 @@ export function MaternityHighlight() {
 
           <div className="flex flex-wrap gap-3">
             <Link
-              href="/citas"
+              href="/citas?servicio=ginecologia-obstetricia"
               className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-5 py-3 rounded-xl font-semibold transition-all shadow-lg shadow-accent/30"
             >
               <CalendarDays size={17} />

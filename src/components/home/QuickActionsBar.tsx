@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CalendarDays, Phone, MapPin } from "lucide-react";
+import { CalendarDays, Siren, MapPin } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { CLINIC } from "@/lib/data/clinic";
 
@@ -18,10 +18,10 @@ export function QuickActionsBar() {
       accent: true,
     },
     {
-      icon: Phone,
+      icon: Siren,
       title: t("call"),
       description: t("callDesc"),
-      href: CLINIC.phoneHref,
+      href: CLINIC.emergencyPhoneHref,
       isExternal: false,
       accent: false,
     },

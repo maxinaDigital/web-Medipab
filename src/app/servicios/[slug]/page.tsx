@@ -38,9 +38,7 @@ export default async function ServicePage({ params }: { params: { slug: string }
     (LucideIcons as unknown as Record<string, React.ComponentType<{ className?: string }>>)[service.icon] ??
     LucideIcons.Stethoscope;
 
-  const relatedDoctors = doctors.filter((d) =>
-    service.doctorSlugs.includes(d.slug)
-  );
+  const relatedDoctors = doctors.filter((d) => d.servicesSlugs.includes(service.slug));
 
   const whatsappText = encodeURIComponent(
     `Hola, me gustaría agendar una cita para ${service.name}.`
@@ -179,7 +177,7 @@ export default async function ServicePage({ params }: { params: { slug: string }
                 {tc("bookWhatsApp")}
               </a>
               <Link
-                href="/citas"
+                href={`/citas?servicio=${service.slug}`}
                 className="flex items-center justify-center gap-2 border border-white/30 text-white py-3 px-5 rounded-lg hover:bg-white/10 transition-colors w-full mt-3 text-sm"
               >
                 {tc("bookAppointment")}

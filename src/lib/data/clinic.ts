@@ -35,6 +35,27 @@ export const CLINIC = {
   },
 } as const;
 
+/** Municipios vecinos desde los que llegan pacientes (para "Cómo llegar"). */
+export const NEARBY_TOWNS = [
+  "Rincón de Romos",
+  "San José de Gracia",
+  "Tepezalá",
+  "Cosío",
+  "Asientos",
+  "Aguascalientes",
+] as const;
+
+/** Ruta en Google Maps desde un municipio de Aguascalientes hasta el hospital. */
+export function directionsUrl(fromTown: string): string {
+  const params = new URLSearchParams({
+    api: "1",
+    origin: `${fromTown}, Aguascalientes, México`,
+    destination: `${CLINIC.fullName}, ${CLINIC.address.full}, México`,
+    travelmode: "driving",
+  });
+  return `https://www.google.com/maps/dir/?${params.toString()}`;
+}
+
 /** Líneas de dirección no vacías, en orden de lectura. */
 export function addressLines(): string[] {
   const { street, neighborhood, postalCode, city, between } = CLINIC.address;

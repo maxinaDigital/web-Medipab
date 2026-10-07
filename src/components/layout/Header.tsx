@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Phone, Menu, X, CalendarDays } from "lucide-react";
+import { Phone, Menu, X, CalendarDays, Siren } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Logo } from "./Logo";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -47,8 +47,15 @@ export function Header() {
               >
                 <Phone size={12} />
                 <span>{CLINIC.phone}</span>
-                <span className="text-primary-light ml-2">|</span>
-                <span className="ml-2">{t("hero.trust1")}</span>
+              </a>
+              <a
+                href={CLINIC.emergencyPhoneHref}
+                className="flex items-center gap-1.5 rounded-full bg-urgent hover:bg-urgent-dark px-3 py-0.5 font-semibold transition-colors"
+                aria-label={`${t("emergency.call")}: ${CLINIC.emergencyPhone}`}
+              >
+                <Siren size={12} aria-hidden="true" />
+                <span>{t("emergency.label")}</span>
+                <span className="font-normal">{CLINIC.emergencyPhone}</span>
               </a>
             </div>
           </div>
@@ -165,7 +172,13 @@ export function Header() {
             <CalendarDays size={15} />
             {t("nav.appointment")}
           </Link>
-          <p className="text-xs text-brand-muted text-center">{t("hero.trust1")}</p>
+          <a
+            href={CLINIC.emergencyPhoneHref}
+            className="flex items-center justify-center gap-2 w-full bg-urgent text-white px-4 py-2.5 rounded-lg text-sm font-semibold hover:bg-urgent-dark transition-colors"
+          >
+            <Siren size={15} aria-hidden="true" />
+            {t("emergency.call")}
+          </a>
         </div>
       </aside>
     </>

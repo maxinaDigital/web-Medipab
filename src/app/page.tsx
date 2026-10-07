@@ -8,6 +8,7 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { LocationMap } from "@/components/home/LocationMap";
 import { CtaBanner } from "@/components/home/CtaBanner";
+import { PatientGuide } from "@/components/home/PatientGuide";
 
 export default function HomePage() {
   return (
@@ -20,6 +21,7 @@ export default function HomePage() {
       <TrustSignals />
       <MaternityHighlight />
       <TeamPreview />
+      <PatientGuide />
       <Testimonials />
       <HowItWorks />
       <LocationMap />

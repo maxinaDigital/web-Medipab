@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { User, ChevronRight, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import * as LucideIcons from "lucide-react";
 import { doctors } from "@/lib/data/doctors";
 import { services } from "@/lib/data/services";
 import { CLINIC } from "@/lib/data/clinic";
 import { SectionTitle } from "@/components/shared/SectionTitle";
+import { DoctorsDirectory } from "@/components/medicos/DoctorsDirectory";
 
 const specialties = services.filter(
   (s) => s.category === "especialidades" || s.slug === "neonatologia-ucin"
@@ -20,8 +21,6 @@ export const metadata: Metadata = {
 
 export default async function MedicosPage() {
   const t = await getTranslations("doctorsPage");
-  const tc = await getTranslations("common");
-  const td = await getTranslations("doctors");
   const ts = await getTranslations("servicesSection");
 
   return (
@@ -91,35 +90,7 @@ export default async function MedicosPage() {
               </div>
             </div>
           )}
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 empty:hidden">
-            {doctors.map((doctor) => (
-              <Link
-                key={doctor.slug}
-                href={`/medicos/${doctor.slug}`}
-                className="group bg-white rounded-2xl border border-brand-border hover:border-primary hover:shadow-lg transition-all duration-300 overflow-hidden flex gap-0 flex-col sm:flex-row"
-              >
-                {/* Photo placeholder */}
-                <div className="sm:w-40 h-40 sm:h-auto bg-primary-light flex items-center justify-center flex-shrink-0">
-                  <User className="w-16 h-16 text-primary opacity-40" />
-                </div>
-                <div className="p-6">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-1">
-                    {td(`${doctor.slug}.specialty`)}
-                  </p>
-                  <h2 className="font-heading text-xl font-semibold text-brand-text mb-1 group-hover:text-primary transition-colors">
-                    {doctor.name}
-                  </h2>
-                  <p className="text-brand-muted text-xs mb-3">{tc("cedula")}: {doctor.cedula}</p>
-                  <p className="text-brand-muted text-sm leading-relaxed line-clamp-2 mb-4">
-                    {doctor.bio}
-                  </p>
-                  <span className="inline-flex items-center gap-1 text-sm font-medium text-primary">
-                    {tc("viewProfile")} <ChevronRight className="w-4 h-4" />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
+          {doctors.length > 0 && <DoctorsDirectory />}
         </div>
       </section>
     </div>

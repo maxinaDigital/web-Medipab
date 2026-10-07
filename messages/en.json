@@ -75,8 +75,8 @@
   "quickActions": {
     "book": "Book Appointment",
     "bookDesc": "We confirm via WhatsApp",
-    "call": "Call",
-    "callDesc": "24-hour emergency room",
+    "call": "Emergency",
+    "callDesc": "Call 24 hours a day",
     "directions": "Get Directions",
     "directionsDesc": "Pabellón de Arteaga"
   },
@@ -279,7 +279,31 @@
     "h3": "Outpatient clinic",
     "h3Val": "By appointment",
     "h4": "Ambulance",
-    "h4Val": "Request by phone"
+    "h4Val": "Request by phone",
+    "fromTitle": "Coming from another town?",
+    "fromDesc": "Open the route in Google Maps from:"
+  },
+  "emergency": {
+    "label": "24-h emergency",
+    "call": "Call the emergency room",
+    "short": "Emergency"
+  },
+  "patientGuide": {
+    "eyebrow": "If you're being admitted",
+    "title": "Your stay at",
+    "titleAccent": "Medipab",
+    "description": "What you need to know before your hospital stay or a family member's.",
+    "checklistTitle": "What to bring",
+    "checklist": ["Official ID", "Previous test results and prescriptions", "A list of the medications you take", "Your insurance policy or authorization letter, if applicable", "Personal hygiene items"],
+    "item1Title": "Admission",
+    "item1Desc": "The admissions team registers your information and assigns your room.",
+    "item2Title": "Private room",
+    "item2Desc": "Every patient has their own room, with 24-hour nursing care.",
+    "item3Title": "Updates and visits",
+    "item3Desc": "The medical team keeps your family informed of your progress. Ask at reception about visiting hours.",
+    "item4Title": "Discharge",
+    "item4Desc": "Your doctor gives you instructions, and you can fill your prescription at our pharmacy before you leave.",
+    "cta": "See inpatient care"
   },
   "ctaBannerSection": {
     "eyebrow": "Your health can't wait",
@@ -341,6 +365,19 @@
     "listEyebrow": "Our services",
     "listTitle": "Services we",
     "listTitleAccent": "offer",
+    "searchLabel": "Search for a service or condition",
+    "searchPlaceholder": "E.g. fracture, pregnancy, lab tests…",
+    "categoryAll": "All",
+    "categoryLabel": "Filter by category",
+    "categories": {
+      "urgencias": "Emergency and critical care",
+      "especialidades": "Specialties",
+      "diagnostico": "Diagnostics",
+      "apoyo": "Support services"
+    },
+    "resultsCount": "{count, plural, =0 {No services} one {# service} other {# services}}",
+    "noResults": "We couldn't find any services matching your search. Message us and we'll help.",
+    "clearFilters": "Clear search",
     "ctaTitle": "Not sure which specialist you need?",
     "ctaDesc": "Message us and we'll point you to the right doctor for your case.",
     "ctaBtn": "Book a consultation"
@@ -354,7 +391,9 @@
     "listTitle": "Specialties with",
     "listTitleAccent": "consultations at the hospital",
     "emptyNote": "We're building the directory with each doctor's profile. In the meantime, we'll help you find the specialist you need.",
-    "emptyCta": "Ask for guidance on WhatsApp"
+    "emptyCta": "Ask for guidance on WhatsApp",
+    "filterLabel": "Filter by specialty",
+    "filterAll": "All"
   },
   "appointmentPage": {
     "eyebrow": "Book your consultation",

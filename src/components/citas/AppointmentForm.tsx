@@ -15,7 +15,14 @@ import { CLINIC } from "@/lib/data/clinic";
 
 const BOOKABLE_SERVICES = services.filter((s) => s.bookable);
 
-export function AppointmentForm() {
+type AppointmentFormProps = {
+  /** Slug de servicio a preseleccionar (desde ?servicio=). Se ignora si no es agendable. */
+  initialService?: string;
+  /** Slug de médico a preseleccionar (desde ?medico=). Se ignora si no existe. */
+  initialDoctor?: string;
+};
+
+export function AppointmentForm({ initialService, initialDoctor }: AppointmentFormProps) {
   const [sent, setSent] = useState(false);
   const t = useTranslations("appointmentPage");
   const tc = useTranslations("common");
@@ -28,14 +35,17 @@ export function AppointmentForm() {
     formState: { errors, isSubmitting },
   } = useForm<AppointmentFormInput>({
     resolver: zodResolver(appointmentSchema),
-    defaultValues: { isFirstTime: false, acceptsPrivacy: false },
+    defaultValues: {
+      isFirstTime: false,
+      acceptsPrivacy: false,
+      service: BOOKABLE_SERVICES.some((s) => s.slug === initialService) ? initialService : "",
+      doctor: doctors.some((d) => d.slug === initialDoctor) ? initialDoctor : "",
+    },
   });
 
   const selectedService = watch("service");
   const relatedDoctors = selectedService
-    ? doctors.filter((d) =>
-        services.find((s) => s.slug === selectedService)?.doctorSlugs.includes(d.slug)
-      )
+    ? doctors.filter((d) => d.servicesSlugs.includes(selectedService))
     : doctors;
 
   const onSubmit = (data: AppointmentFormInput) => {

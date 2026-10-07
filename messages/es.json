@@ -75,8 +75,8 @@
   "quickActions": {
     "book": "Agendar Cita",
     "bookDesc": "Te confirmamos por WhatsApp",
-    "call": "Llamar",
-    "callDesc": "Urgencias 24 horas",
+    "call": "Urgencias",
+    "callDesc": "Llama las 24 horas",
     "directions": "Cómo Llegar",
     "directionsDesc": "Pabellón de Arteaga"
   },
@@ -279,7 +279,31 @@
     "h3": "Consulta externa",
     "h3Val": "Con cita previa",
     "h4": "Ambulancia",
-    "h4Val": "Solicítala por teléfono"
+    "h4Val": "Solicítala por teléfono",
+    "fromTitle": "¿Vienes de otro municipio?",
+    "fromDesc": "Abre la ruta en Google Maps desde:"
+  },
+  "emergency": {
+    "label": "Urgencias 24 h",
+    "call": "Llamar a Urgencias",
+    "short": "Urgencias"
+  },
+  "patientGuide": {
+    "eyebrow": "Si vas a internarte",
+    "title": "Tu estancia en",
+    "titleAccent": "Medipab",
+    "description": "Lo que necesitas saber antes de tu hospitalización o la de tu familiar.",
+    "checklistTitle": "Qué llevar",
+    "checklist": ["Identificación oficial", "Estudios y recetas previas", "Lista de los medicamentos que tomas", "Póliza o carta de tu aseguradora, si aplica", "Artículos de higiene personal"],
+    "item1Title": "Ingreso",
+    "item1Desc": "Admisión registra tus datos y te asigna tu habitación.",
+    "item2Title": "Habitación individual",
+    "item2Desc": "Cada paciente tiene su propia habitación, con enfermería las 24 horas.",
+    "item3Title": "Informes y visitas",
+    "item3Desc": "El equipo médico informa a tu familia sobre tu evolución. Consulta los horarios de visita en recepción.",
+    "item4Title": "Alta",
+    "item4Desc": "Tu médico te entrega indicaciones y puedes surtir tu receta en nuestra farmacia antes de salir.",
+    "cta": "Ver hospitalización"
   },
   "ctaBannerSection": {
     "eyebrow": "Tu salud no puede esperar",
@@ -341,6 +365,19 @@
     "listEyebrow": "Nuestros servicios",
     "listTitle": "Servicios que",
     "listTitleAccent": "ofrecemos",
+    "searchLabel": "Buscar servicio o padecimiento",
+    "searchPlaceholder": "Ej. fractura, embarazo, laboratorio…",
+    "categoryAll": "Todos",
+    "categoryLabel": "Filtrar por categoría",
+    "categories": {
+      "urgencias": "Urgencias y cuidados críticos",
+      "especialidades": "Especialidades",
+      "diagnostico": "Diagnóstico",
+      "apoyo": "Servicios de apoyo"
+    },
+    "resultsCount": "{count, plural, =0 {Ningún servicio} one {# servicio} other {# servicios}}",
+    "noResults": "No encontramos servicios con esa búsqueda. Escríbenos y te orientamos.",
+    "clearFilters": "Limpiar búsqueda",
     "ctaTitle": "¿No sabes qué especialista necesitas?",
     "ctaDesc": "Escríbenos y te orientamos con el médico adecuado para tu caso.",
     "ctaBtn": "Agendar una consulta"
@@ -354,7 +391,9 @@
     "listTitle": "Especialidades con",
     "listTitleAccent": "consulta en el hospital",
     "emptyNote": "Estamos integrando el directorio con el perfil de cada médico. Mientras tanto, te ayudamos a encontrar al especialista que necesitas.",
-    "emptyCta": "Pedir orientación por WhatsApp"
+    "emptyCta": "Pedir orientación por WhatsApp",
+    "filterLabel": "Filtrar por especialidad",
+    "filterAll": "Todas"
   },
   "appointmentPage": {
     "eyebrow": "Agenda tu consulta",

@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, Mail } from "lucide-react";
+import { MapPin, Phone, Clock, Mail, Navigation } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { SectionTitle } from "@/components/shared/SectionTitle";
-import { CLINIC, addressLines } from "@/lib/data/clinic";
+import { CLINIC, NEARBY_TOWNS, addressLines, directionsUrl } from "@/lib/data/clinic";
 
 export function LocationMap() {
   const t = useTranslations("locationSection");
@@ -119,6 +119,31 @@ export function LocationMap() {
                   </span>
                 </div>
               </div>
+            </div>
+
+            {/* Cómo llegar desde municipios vecinos */}
+            <div className="bg-white rounded-2xl border border-brand-border p-6">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-xl bg-primary-light flex items-center justify-center">
+                  <Navigation className="w-5 h-5 text-primary" />
+                </div>
+                <p className="font-semibold text-brand-text">{t("fromTitle")}</p>
+              </div>
+              <p className="text-sm text-brand-muted mb-4">{t("fromDesc")}</p>
+              <ul className="flex flex-wrap gap-2" role="list">
+                {NEARBY_TOWNS.map((town) => (
+                  <li key={town}>
+                    <a
+                      href={directionsUrl(town)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block rounded-full border border-brand-border px-3.5 py-1.5 text-sm text-brand-text hover:border-primary hover:text-primary transition-colors"
+                    >
+                      {town}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </motion.div>
 

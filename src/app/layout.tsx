@@ -5,6 +5,7 @@ import { getMessages, getLocale } from "next-intl/server";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { EmergencyButton } from "@/components/layout/EmergencyButton";
 import { CLINIC } from "@/lib/data/clinic";
 
 const inter = Inter({
@@ -102,6 +103,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             {children}
           </main>
           <Footer />
+          <EmergencyButton />
         </NextIntlClientProvider>
       </body>
     </html>

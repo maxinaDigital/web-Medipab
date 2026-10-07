@@ -1,6 +1,7 @@
 // Servicios de Medipab según la entrevista con Dirección Médica (2026-10-03).
 // Los textos largos (descripción, padecimientos, proceso, FAQ) viven en messages/{es,en}.json
 // bajo servicesSection.items.<slug>; aquí solo van los datos estructurales y el SEO en español.
+// La relación con médicos vive en doctors.ts (Doctor.servicesSlugs).
 
 export type ServiceCategory = "urgencias" | "especialidades" | "diagnostico" | "apoyo";
 
@@ -15,7 +16,6 @@ export type Service = {
   bookable: boolean;
   /** Aparece en la vista previa del inicio. */
   featured: boolean;
-  doctorSlugs: string[];
 };
 
 export const services: Service[] = [
@@ -28,7 +28,6 @@ export const services: Service[] = [
     category: "urgencias",
     bookable: false,
     featured: true,
-    doctorSlugs: [],
   },
   {
     id: "hospitalizacion",
@@ -39,7 +38,6 @@ export const services: Service[] = [
     category: "urgencias",
     bookable: false,
     featured: true,
-    doctorSlugs: [],
   },
   {
     id: "terapia-intensiva",
@@ -50,7 +48,6 @@ export const services: Service[] = [
     category: "urgencias",
     bookable: false,
     featured: true,
-    doctorSlugs: [],
   },
   {
     id: "neonatologia-ucin",
@@ -61,7 +58,6 @@ export const services: Service[] = [
     category: "urgencias",
     bookable: false,
     featured: true,
-    doctorSlugs: [],
   },
   {
     id: "ginecologia-obstetricia",
@@ -72,7 +68,6 @@ export const services: Service[] = [
     category: "especialidades",
     bookable: true,
     featured: true,
-    doctorSlugs: [],
   },
   {
     id: "pediatria",
@@ -83,7 +78,6 @@ export const services: Service[] = [
     category: "especialidades",
     bookable: true,
     featured: true,
-    doctorSlugs: [],
   },
   {
     id: "cirugia-general",
@@ -94,7 +88,6 @@ export const services: Service[] = [
     category: "especialidades",
     bookable: true,
     featured: true,
-    doctorSlugs: [],
   },
   {
     id: "ortopedia-traumatologia",
@@ -105,7 +98,6 @@ export const services: Service[] = [
     category: "especialidades",
     bookable: true,
     featured: true,
-    doctorSlugs: [],
   },
   {
     id: "consulta-externa",
@@ -116,7 +108,6 @@ export const services: Service[] = [
     category: "especialidades",
     bookable: true,
     featured: false,
-    doctorSlugs: [],
   },
   {
     id: "laboratorio-clinico",
@@ -127,7 +118,6 @@ export const services: Service[] = [
     category: "diagnostico",
     bookable: true,
     featured: false,
-    doctorSlugs: [],
   },
   {
     id: "imagenologia",
@@ -138,7 +128,6 @@ export const services: Service[] = [
     category: "diagnostico",
     bookable: true,
     featured: false,
-    doctorSlugs: [],
   },
   {
     id: "banco-de-sangre",
@@ -149,7 +138,6 @@ export const services: Service[] = [
     category: "apoyo",
     bookable: false,
     featured: false,
-    doctorSlugs: [],
   },
   {
     id: "farmacia",
@@ -160,7 +148,6 @@ export const services: Service[] = [
     category: "apoyo",
     bookable: false,
     featured: false,
-    doctorSlugs: [],
   },
   {
     id: "ambulancia",
@@ -171,7 +158,6 @@ export const services: Service[] = [
     category: "apoyo",
     bookable: false,
     featured: false,
-    doctorSlugs: [],
   },
 ];
 

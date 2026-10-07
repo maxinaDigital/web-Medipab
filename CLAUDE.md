@@ -28,13 +28,16 @@ src/
     nosotros/ servicios/[slug] medicos/[slug] citas/ contacto/ preguntas-frecuentes/
     icon.png, apple-icon.png   # favicon / iOS icon (from logo/)
   components/
-    layout/               # Header, Footer, Logo, LanguageSwitcher
-    home/                 # one file per home section
-    citas/                # AppointmentForm (→ WhatsApp)
+    layout/               # Header (urgencias strip), Footer, Logo, LanguageSwitcher, EmergencyButton (mobile floating call)
+    home/                 # one file per home section (incl. PatientGuide, LocationMap with directions from nearby towns)
+    servicios/            # ServicesDirectory — accent-insensitive search + category chips
+    medicos/              # DoctorsDirectory — specialty filter (only rendered when doctors.ts has profiles)
+    citas/                # AppointmentForm (→ WhatsApp); /citas?servicio=<slug>&medico=<slug> preselects
     shared/               # SectionTitle
     ui/                   # shadcn generated components — do not edit manually
   i18n/request.ts         # locale from NEXT_LOCALE cookie (es | en)
-  lib/data/               # clinic.ts, services.ts, doctors.ts — all institutional data lives here
+  lib/data/               # clinic.ts, services.ts, doctors.ts — all institutional data lives here.
+                          # Doctor↔service relation lives only in Doctor.servicesSlugs.
 messages/                 # es.json, en.json (keep both in sync)
 logo/                     # master logo files (SVG + PNG) and the script that generated them
 public/images/            # logo SVGs served by the site

@@ -10,7 +10,11 @@ export const metadata: Metadata = {
     "Agenda tu consulta con un especialista en Medipab, Pabellón de Arteaga. Te confirmamos por WhatsApp.",
 };
 
-export default async function CitasPage() {
+export default async function CitasPage({
+  searchParams,
+}: {
+  searchParams: { servicio?: string; medico?: string };
+}) {
   const t = await getTranslations("appointmentPage");
   const tc = await getTranslations("common");
 
@@ -36,7 +40,7 @@ export default async function CitasPage() {
         <div className="max-w-5xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-10">
           {/* Formulario */}
           <div className="lg:col-span-2">
-            <AppointmentForm />
+            <AppointmentForm initialService={searchParams.servicio} initialDoctor={searchParams.medico} />
           </div>
 
           {/* Sidebar */}

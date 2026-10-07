@@ -145,7 +145,7 @@ export function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+        <div className="max-w-7xl mx-auto px-6 pt-5 pb-20 md:pb-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
           <p>
             © {new Date().getFullYear()} {CLINIC.legalName}. {t("rights")}
           </p>

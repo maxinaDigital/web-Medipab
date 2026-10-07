@@ -166,7 +166,7 @@ export default async function DoctorPage({ params }: { params: { slug: string } 
                 {tc("bookWhatsApp")}
               </a>
               <Link
-                href="/citas"
+                href={`/citas?medico=${doctor.slug}${doctor.servicesSlugs[0] ? `&servicio=${doctor.servicesSlugs[0]}` : ""}`}
                 className="flex items-center justify-center gap-2 border border-white/30 text-white py-3 px-5 rounded-lg hover:bg-white/10 transition-colors w-full mt-3 text-sm"
               >
                 {tc("bookAppointment")}
