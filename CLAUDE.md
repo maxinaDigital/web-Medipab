@@ -108,4 +108,4 @@ Same as Crystal: GitHub (org `maxinaDigital`) → Vercel, configured by `vercel.
 - `images.unoptimized: true`: the site only uses local SVGs, and disabling `/_next/image` removes the Next 14 image-optimizer advisories. Keep it unless a newer Next is adopted.
 - JSON-LD must go through `jsonLdHtml()` (`src/lib/jsonLd.ts`), never raw `JSON.stringify` inside `dangerouslySetInnerHTML`.
 - `shadcn` is a CLI (devDependency); never import it from app code.
-- Known residual risk: Next 14.2.x has unpatched advisories (RSC DoS / cache poisoning) fixed only in Next 15.5.24+.
+- Known residual risk: Next 14.2.x has unpatched advisories (RSC DoS / cache poisoning) fixed only in Next 15.5.24+. **Decision (2026-10-07): launch on Next 14 with these mitigations; upgrade Medipab and Crystal together in a later phase.**
