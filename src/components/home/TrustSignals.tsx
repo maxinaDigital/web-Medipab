@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Clock, Building2, Stethoscope, FlaskConical } from "lucide-react";
+import { Clock, Stethoscope, HeartPulse, BedSingle } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 
-const ICONS = [Clock, Building2, Stethoscope, FlaskConical];
+const ICONS = [Clock, Stethoscope, HeartPulse, BedSingle];
 
 const itemVariants = {
   hidden: { opacity: 0, y: 24 },

@@ -3,27 +3,18 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  Stethoscope, Baby, Heart, Activity, Scissors,
-  Apple, FlaskConical, ScanLine, ArrowRight,
+  Siren, BedSingle, HeartPulse, Baby, Heart, Smile, Scissors, Bone,
+  Stethoscope, ArrowRight,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { SectionTitle } from "@/components/shared/SectionTitle";
+import { services } from "@/lib/data/services";
 
 const ICON_MAP: Record<string, React.ElementType> = {
-  Stethoscope, Baby, Heart, Activity, Scissors,
-  Apple, FlaskConical, ScanLine,
+  Siren, BedSingle, HeartPulse, Baby, Heart, Smile, Scissors, Bone,
 };
 
-const SERVICE_SLUGS = [
-  { slug: "medicina-general",        icon: "Stethoscope" },
-  { slug: "pediatria-neonatologia",  icon: "Baby" },
-  { slug: "ginecologia-obstetricia", icon: "Heart" },
-  { slug: "cardiologia",             icon: "Activity" },
-  { slug: "cirugia-general",         icon: "Scissors" },
-  { slug: "nutricion-clinica",       icon: "Apple" },
-  { slug: "laboratorio-clinico",     icon: "FlaskConical" },
-  { slug: "imagenologia",            icon: "ScanLine" },
-];
+const SERVICE_SLUGS = services.filter((s) => s.featured);
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },

@@ -3,9 +3,9 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
 export const metadata: Metadata = {
-  title: "Preguntas Frecuentes — Clínica Crystal | Aguascalientes",
+  title: "Preguntas frecuentes",
   description:
-    "Resolvemos tus dudas sobre citas, servicios, horarios y atención en Clínica Crystal, clínica privada 24/7 en Aguascalientes.",
+    "Resolvemos tus dudas sobre citas, urgencias, hospitalización, servicios y pagos en Medipab Hospital de Especialidades.",
 };
 
 type FaqItem = { q: string; a: string };

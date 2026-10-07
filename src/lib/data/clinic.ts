@@ -1,70 +1,47 @@
+// Datos institucionales de Medipab.
+// Fuente: entrevista con Dirección Médica (2026-10-03).
+// Todo lo marcado PENDIENTE es un placeholder que el cliente debe confirmar antes de publicar
+// (lista completa en CLAUDE.md → "Hospital data").
+
 export const CLINIC = {
-  name: "Clínica Crystal",
-  legalName: "CLINICA CRYSTAL S.A. de C.V.",
-  rfc: "CCR220517JW8",
-  phone: "(449) 000-0000",
-  phoneHref: "tel:+524490000000",
-  whatsapp: "524490000000",
-  email: "contacto@clinicacrystal.com",
+  name: "Medipab",
+  fullName: "Medipab Hospital de Especialidades",
+  legalName: "Medipab Hospital de Especialidades", // PENDIENTE: razón social
+  phone: "(465) 000-0000", // PENDIENTE
+  phoneHref: "tel:+524650000000", // PENDIENTE
+  emergencyPhone: "(465) 000-0000", // PENDIENTE: línea directa de Urgencias
+  emergencyPhoneHref: "tel:+524650000000", // PENDIENTE
+  whatsapp: "524650000000", // PENDIENTE
+  email: "contacto@medipab.com.mx", // PENDIENTE
+  siteUrl: "https://medipab.com.mx", // PENDIENTE: dominio
   address: {
-    street: "Av. del Parque #348",
-    neighborhood: "Col. Jardines del Parque",
-    city: "Aguascalientes",
+    street: "", // PENDIENTE: calle y número
+    neighborhood: "", // PENDIENTE: colonia
+    city: "Pabellón de Arteaga",
     state: "Aguascalientes",
     country: "México",
-    postalCode: "20276",
-    between: "entre Av. del Lago y Av. Héroe de Nacozari",
-    full: "Av. del Parque #348, Col. Jardines del Parque, CP 20276, Aguascalientes, Ags.",
+    postalCode: "", // PENDIENTE
+    between: "", // PENDIENTE: entre calles / referencia
+    full: "Pabellón de Arteaga, Aguascalientes", // PENDIENTE: dirección completa
     googleMapsUrl:
-      "https://www.google.com/maps/search/Av.+del+Parque+%23348,+Col.+Jardines+del+Parque,+CP+20276,+Aguascalientes,+Ags.,+M%C3%A9xico",
+      "https://www.google.com/maps/search/Pabell%C3%B3n+de+Arteaga,+Aguascalientes,+M%C3%A9xico",
     googleMapsEmbed:
-      "https://maps.google.com/maps?q=Av.+del+Parque+%23348,+Col.+Jardines+del+Parque,+CP+20276,+Aguascalientes,+Ags.,+M%C3%A9xico&output=embed&hl=es",
+      "https://maps.google.com/maps?q=Pabell%C3%B3n+de+Arteaga,+Aguascalientes,+M%C3%A9xico&output=embed&hl=es",
   },
-  hours: [
-    { days: "Lunes – Domingo", hours: "Abierto 24 horas" },
-  ],
-  hoursShort: "Abierto 24/7 · 365 días",
-  foundedYear: 2025,
   social: {
-    facebook: "https://facebook.com/clinicacrystal",
-    instagram: "https://instagram.com/clinicacrystal",
-    whatsapp: "https://wa.me/524490000000",
+    facebook: "", // PENDIENTE
+    instagram: "", // PENDIENTE
+    whatsapp: "https://wa.me/524650000000", // PENDIENTE
   },
 } as const;
 
-export const TRUST_STATS = [
-  {
-    value: "24/7",
-    label: "Atención continua",
-    description: "Abiertos todos los días, todo el año, sin excepción",
-    icon: "Clock",
-  },
-  {
-    value: "5",
-    label: "Quirófanos equipados",
-    description: "3 exclusivos de maternidad y 2 de cirugía general",
-    icon: "Building2",
-  },
-  {
-    value: "8",
-    label: "Especialidades médicas",
-    description: "Médicos reconocidos con amplia trayectoria clínica",
-    icon: "Stethoscope",
-  },
-  {
-    value: "100%",
-    label: "Diagnóstico in-house",
-    description: "Laboratorio e imagenología propios, sin salir de la clínica",
-    icon: "FlaskConical",
-  },
-] as const;
-
-export const FACILITIES = [
-  "3 quirófanos exclusivos de maternidad",
-  "2 quirófanos de cirugía general",
-  "Imagenología propia (ultrasonido, rayos X)",
-  "Laboratorio clínico in-house",
-  "Cafetería en instalaciones",
-  "Salas de estar en todos los niveles",
-  "Estacionamiento",
-] as const;
+/** Líneas de dirección no vacías, en orden de lectura. */
+export function addressLines(): string[] {
+  const { street, neighborhood, postalCode, city, between } = CLINIC.address;
+  return [
+    street,
+    neighborhood,
+    [postalCode && `CP ${postalCode}`, `${city}, Ags.`].filter(Boolean).join(", "),
+    between && `(${between})`,
+  ].filter(Boolean);
+}

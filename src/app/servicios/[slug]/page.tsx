@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import * as LucideIcons from "lucide-react";
-import { CheckCircle2, ChevronRight, MessageCircle } from "lucide-react";
+import { CheckCircle2, ChevronRight, MessageCircle, Phone } from "lucide-react";
 import { services, getServiceBySlug } from "@/lib/data/services";
 import { doctors } from "@/lib/data/doctors";
 import { CLINIC } from "@/lib/data/clinic";
@@ -20,7 +20,7 @@ export async function generateMetadata({
   const service = getServiceBySlug(params.slug);
   if (!service) return {};
   return {
-    title: `${service.name} — Clínica Crystal | Aguascalientes`,
+    title: service.name,
     description: service.shortDescription,
   };
 }
@@ -52,8 +52,8 @@ export default async function ServicePage({ params }: { params: { slug: string }
     name: service.name,
     description: service.shortDescription,
     provider: {
-      "@type": "MedicalOrganization",
-      name: CLINIC.name,
+      "@type": "Hospital",
+      name: CLINIC.fullName,
       address: CLINIC.address.full,
     },
   };
@@ -61,6 +61,8 @@ export default async function ServicePage({ params }: { params: { slug: string }
   const serviceName = ts(`items.${service.slug}.name`);
   const fullDescription = ts(`items.${service.slug}.full`);
   const conditions = ts.raw(`items.${service.slug}.conditions`) as string[];
+  // Algunos servicios (farmacia, banco de sangre, ambulancia) titulan la lista distinto a "¿Qué atendemos?"
+  const { conditionsTitle } = ts.raw(`items.${service.slug}`) as { conditionsTitle?: string };
   const processSteps = ts.raw(`items.${service.slug}.process`) as { title: string; desc: string }[];
   const faqItems = ts.raw(`items.${service.slug}.faq`) as { q: string; a: string }[];
 
@@ -101,7 +103,7 @@ export default async function ServicePage({ params }: { params: { slug: string }
             {/* Condiciones */}
             <div>
               <h2 className="font-heading text-2xl font-bold text-brand-text mb-6">
-                {tc("conditions")}
+                {conditionsTitle ?? tc("conditions")}
               </h2>
               <ul className="space-y-3">
                 {conditions.map((c) => (
@@ -161,6 +163,7 @@ export default async function ServicePage({ params }: { params: { slug: string }
           {/* Sidebar */}
           <div className="space-y-5">
             {/* CTA sticky card */}
+            {service.bookable ? (
             <div className="bg-gradient-to-br from-ocean-from to-ocean-to rounded-2xl p-6 text-white">
               <h3 className="font-heading text-lg font-bold mb-2">{tc("readyToBook")}</h3>
               <p className="text-white/70 text-sm mb-5">
@@ -182,6 +185,21 @@ export default async function ServicePage({ params }: { params: { slug: string }
                 {tc("bookAppointment")}
               </Link>
             </div>
+            ) : (
+            // Servicios sin cita (urgencias, ambulancia, farmacia, banco de sangre): llamada directa
+            <div className="bg-gradient-to-br from-ocean-from to-ocean-to rounded-2xl p-6 text-white">
+              <h3 className="font-heading text-lg font-bold mb-2">{tc("needThisService")}</h3>
+              <p className="text-white/70 text-sm mb-5">{tc("noAppointmentNeeded")}</p>
+              <a
+                href={CLINIC.emergencyPhoneHref}
+                className="flex items-center justify-center gap-2 bg-white text-primary font-semibold py-3 px-5 rounded-lg hover:bg-primary-light transition-colors w-full"
+              >
+                <Phone className="w-5 h-5" />
+                {tc("callUs")}: {CLINIC.emergencyPhone}
+              </a>
+              <p className="text-white/60 text-xs mt-4">{tc("emergency911")}</p>
+            </div>
+            )}
 
             {/* Médicos relacionados */}
             {relatedDoctors.length > 0 && (

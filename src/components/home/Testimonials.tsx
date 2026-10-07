@@ -5,35 +5,15 @@ import { Star, Quote } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 
-const TESTIMONIALS = [
-  {
-    name: "María González",
-    role: "Paciente de Maternidad",
-    text: "La atención durante mi parto fue excepcional. El equipo de maternidad me transmitió mucha seguridad desde el primer momento. Los quirófanos son modernos y el personal es muy profesional. Sin duda el mejor lugar para dar a luz en Aguascalientes.",
-    stars: 5,
-  },
-  {
-    name: "Roberto Jiménez",
-    role: "Paciente de Cirugía",
-    text: "Me operaron de la vesícula de forma laparoscópica. El Dr. Herrera me explicó todo el procedimiento con detalle y la recuperación fue rápida. La clínica está muy limpia y la atención fue impecable desde admisión hasta el alta.",
-    stars: 5,
-  },
-  {
-    name: "Fernanda Ruiz",
-    role: "Paciente de Pediatría",
-    text: "Mi bebé recién nacido necesitó cuidados especiales y el Dr. Medina estuvo pendiente en todo momento. La unidad neonatal nos brindó mucha confianza. Como mamá, saber que tenemos un neonatólogo de guardia 24/7 es invaluable.",
-    stars: 5,
-  },
-  {
-    name: "Alejandro Torres",
-    role: "Paciente de Nutrición",
-    text: "La Dra. Villa transformó mi relación con la alimentación. Su plan es práctico, sin restricciones absurdas. En 3 meses bajé 8 kilos y me siento con mucha energía. Lo mejor es que el enfoque está integrado con mis otros médicos de la clínica.",
-    stars: 5,
-  },
-];
+type Testimonial = { name: string; role: string; text: string; stars: number };
+
+// PENDIENTE: solo testimonios reales con autorización del paciente. Mientras esté vacío, la sección no se muestra.
+const TESTIMONIALS: Testimonial[] = [];
 
 export function Testimonials() {
   const t = useTranslations("testimonialsSection");
+
+  if (TESTIMONIALS.length === 0) return null;
 
   return (
     <section className="py-20 bg-primary-light">

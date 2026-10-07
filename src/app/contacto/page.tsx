@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import { CLINIC } from "@/lib/data/clinic";
+import { CLINIC, addressLines } from "@/lib/data/clinic";
 
 export const metadata: Metadata = {
-  title: "Contacto — Clínica Crystal | Aguascalientes",
+  title: "Contacto",
   description:
-    "Contáctanos en Clínica Crystal. Av. del Parque #348, Jardines del Parque, Aguascalientes. Atención 24/7 al (449) 000-0000.",
+    "Contacta a Medipab Hospital de Especialidades en Pabellón de Arteaga, Aguascalientes. Urgencias abiertas las 24 horas.",
 };
 
 export default async function ContactoPage() {
@@ -18,12 +18,7 @@ export default async function ContactoPage() {
     {
       icon: MapPin,
       title: tl("addressLabel"),
-      lines: [
-        CLINIC.address.street,
-        CLINIC.address.neighborhood,
-        `CP ${CLINIC.address.postalCode}, ${CLINIC.address.city}, Ags.`,
-        `(${CLINIC.address.between})`,
-      ],
+      lines: addressLines(),
     },
     {
       icon: Phone,
@@ -100,7 +95,7 @@ export default async function ContactoPage() {
 
             {/* WhatsApp CTA */}
             <a
-              href={`https://wa.me/${CLINIC.whatsapp}?text=${encodeURIComponent("Hola, me gustaría obtener más información sobre Clínica Crystal.")}`}
+              href={`https://wa.me/${CLINIC.whatsapp}?text=${encodeURIComponent(`Hola, me gustaría obtener más información sobre ${CLINIC.name}.`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 bg-primary text-white py-3 px-6 rounded-xl font-medium hover:bg-primary-dark transition-colors w-full"
@@ -119,7 +114,7 @@ export default async function ContactoPage() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Ubicación de Clínica Crystal"
+              title={`Ubicación de ${CLINIC.fullName}`}
             />
           </div>
         </div>

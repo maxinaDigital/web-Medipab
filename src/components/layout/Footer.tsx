@@ -5,21 +5,17 @@ import { Phone, Mail, MapPin, Clock, Share2, Camera, MessageCircle, CalendarDays
 import { useTranslations } from "next-intl";
 import { Logo } from "./Logo";
 import { CLINIC } from "@/lib/data/clinic";
+import { services } from "@/lib/data/services";
 
 export function Footer() {
   const t = useTranslations("footer");
   const tn = useTranslations("nav");
   const ts = useTranslations("servicesSection");
+  const tl = useTranslations("locationSection");
 
-  const SERVICES_LINKS = [
-    { href: "/servicios/medicina-general",        label: ts("items.medicina-general.name") },
-    { href: "/servicios/pediatria-neonatologia",  label: ts("items.pediatria-neonatologia.name") },
-    { href: "/servicios/ginecologia-obstetricia", label: ts("items.ginecologia-obstetricia.name") },
-    { href: "/servicios/cardiologia",             label: ts("items.cardiologia.name") },
-    { href: "/servicios/cirugia-general",         label: ts("items.cirugia-general.name") },
-    { href: "/servicios/laboratorio-clinico",     label: ts("items.laboratorio-clinico.name") },
-    { href: "/servicios/imagenologia",            label: ts("items.imagenologia.name") },
-  ];
+  const SERVICES_LINKS = services
+    .filter((s) => s.featured)
+    .map((s) => ({ href: `/servicios/${s.slug}`, label: ts(`items.${s.slug}.name`) }));
 
   const NAV_LINKS = [
     { href: "/nosotros",              label: tn("about") },
@@ -43,21 +39,21 @@ export function Footer() {
             <button
               type="button"
               className="p-2 rounded-full bg-white/10 hover:bg-accent transition-colors"
-              aria-label="Facebook de Clínica Crystal"
+              aria-label={`Facebook de ${CLINIC.name}`}
             >
               <Share2 size={16} />
             </button>
             <button
               type="button"
               className="p-2 rounded-full bg-white/10 hover:bg-accent transition-colors"
-              aria-label="Instagram de Clínica Crystal"
+              aria-label={`Instagram de ${CLINIC.name}`}
             >
               <Camera size={16} />
             </button>
             <button
               type="button"
               className="p-2 rounded-full bg-white/10 hover:bg-accent transition-colors"
-              aria-label="WhatsApp de Clínica Crystal"
+              aria-label={`WhatsApp de ${CLINIC.name}`}
             >
               <MessageCircle size={16} />
             </button>
@@ -127,10 +123,10 @@ export function Footer() {
             <li className="flex items-start gap-3 text-sm text-slate-200">
               <Clock size={15} className="shrink-0 mt-0.5 text-glow" />
               <div>
-                {CLINIC.hours.map(({ days, hours }) => (
-                  <p key={days}>
-                    <span className="text-slate-300">{days}: </span>
-                    {hours}
+                {(["h1", "h3"] as const).map((key) => (
+                  <p key={key}>
+                    <span className="text-slate-300">{tl(key)}: </span>
+                    {tl(`${key}Val`)}
                   </p>
                 ))}
               </div>

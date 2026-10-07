@@ -42,7 +42,17 @@ public/images/            # logo SVGs served by the site
 
 ## Hospital data
 
-Pending from the client (see Fase 0 in `PLAN-MEDIPAB.md`). Until then `src/lib/data/*` and `messages/*` still contain Crystal's placeholder content.
+Source: interview with the medical director (2026-10-03). Confirmed facts the copy relies on:
+
+- Specialty hospital in operation in **Pabellón de Arteaga, Ags.**; single site, no branches.
+- **5 private rooms (1 bed each) + 3 emergency beds.**
+- Services (14, one entry each in `lib/data/services.ts`): Urgencias 24 h, Hospitalización, UCI adultos, UCIN, Ginecobstetricia, Pediatría, Cirugía general, Ortopedia/trauma, Consulta externa, Laboratorio, Imagenología, Banco de sangre, Farmacia al público, Ambulancia.
+- **~52 external doctors** managed by the hospital → copy says "más de 50".
+- Works with insurers/agreements and issues CFDI invoices.
+
+Do not invent facts that are not in that list (number of operating rooms, imaging modalities, hours other than 24 h ER/inpatient, fees, years of operation). The interview also contains internal IT/commercial notes; none of that goes on the site.
+
+**Placeholders still pending from the client** (grep `PENDIENTE`): address (street, colonia, CP), phones (main, emergency, WhatsApp), email, domain, legal name, social media, doctor profiles (`doctors.ts` is intentionally empty — never add sample doctors), real testimonials (`Testimonials.tsx` hides itself while empty), mission/vision approval.
 
 ## Brand
 

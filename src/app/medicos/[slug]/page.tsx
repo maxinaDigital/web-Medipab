@@ -7,6 +7,9 @@ import { doctors, getDoctorBySlug } from "@/lib/data/doctors";
 import { services } from "@/lib/data/services";
 import { CLINIC } from "@/lib/data/clinic";
 
+// Solo existen los perfiles de doctors.ts; cualquier otro slug es 404.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return doctors.map((d) => ({ slug: d.slug }));
 }
@@ -19,7 +22,7 @@ export async function generateMetadata({
   const doctor = getDoctorBySlug(params.slug);
   if (!doctor) return {};
   return {
-    title: `${doctor.name} — ${doctor.specialty} | Clínica Crystal Aguascalientes`,
+    title: `${doctor.name} — ${doctor.specialty}`,
     description: doctor.bio.slice(0, 160),
   };
 }
@@ -47,7 +50,7 @@ export default async function DoctorPage({ params }: { params: { slug: string } 
     "@type": "Physician",
     name: doctor.name,
     medicalSpecialty: doctor.specialty,
-    worksFor: { "@type": "MedicalOrganization", name: CLINIC.name },
+    worksFor: { "@type": "Hospital", name: CLINIC.fullName },
   };
 
   return (

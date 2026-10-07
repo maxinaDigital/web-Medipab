@@ -13,6 +13,8 @@ import { services } from "@/lib/data/services";
 import { doctors } from "@/lib/data/doctors";
 import { CLINIC } from "@/lib/data/clinic";
 
+const BOOKABLE_SERVICES = services.filter((s) => s.bookable);
+
 export function AppointmentForm() {
   const [sent, setSent] = useState(false);
   const t = useTranslations("appointmentPage");
@@ -44,13 +46,13 @@ export function AppointmentForm() {
     const firstTime = data.isFirstTime ? "Sí" : "No";
 
     const msg = [
-      `*Nueva solicitud de cita — Clínica Crystal*`,
+      `*Nueva solicitud de cita — ${CLINIC.name}*`,
       ``,
       `👤 *Nombre:* ${data.name}`,
       `📱 *Teléfono:* ${data.phone}`,
       `✉️ *Email:* ${data.email}`,
       `🏥 *Servicio:* ${services.find((s) => s.slug === data.service)?.name ?? data.service}`,
-      `👨‍⚕️ *Médico preferido:* ${doctor}`,
+      doctors.length > 0 ? `👨‍⚕️ *Médico preferido:* ${doctor}` : "",
       `📅 *Fecha preferida:* ${data.preferredDate}`,
       `🕐 *Turno:* ${shiftLabel}`,
       `🆕 *Primera vez:* ${firstTime}`,
@@ -145,7 +147,7 @@ export function AppointmentForm() {
         {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div className={`grid grid-cols-1 gap-5 ${doctors.length > 0 ? "sm:grid-cols-2" : ""}`}>
         {/* Servicio */}
         <div>
           <label className="block text-sm font-medium text-brand-text mb-1">
@@ -156,7 +158,7 @@ export function AppointmentForm() {
             className="w-full px-4 py-2.5 rounded-lg border border-brand-border text-brand-text focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition text-sm bg-white"
           >
             <option value="">{t("servicePlaceholder")}</option>
-            {services.map((s) => (
+            {BOOKABLE_SERVICES.map((s) => (
               <option key={s.slug} value={s.slug}>
                 {ts(`items.${s.slug}.name`)}
               </option>
@@ -165,7 +167,8 @@ export function AppointmentForm() {
           {errors.service && <p className="text-red-500 text-xs mt-1">{errors.service.message}</p>}
         </div>
 
-        {/* Médico */}
+        {/* Médico — solo cuando hay perfiles publicados */}
+        {doctors.length > 0 && (
         <div>
           <label className="block text-sm font-medium text-brand-text mb-1">
             {t("doctorLabel")}
@@ -182,6 +185,7 @@ export function AppointmentForm() {
             ))}
           </select>
         </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">

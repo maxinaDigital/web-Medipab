@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, Clock, Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { SectionTitle } from "@/components/shared/SectionTitle";
-import { CLINIC } from "@/lib/data/clinic";
+import { CLINIC, addressLines } from "@/lib/data/clinic";
 
 export function LocationMap() {
   const t = useTranslations("locationSection");
@@ -44,14 +44,11 @@ export function LocationMap() {
                 </div>
                 <div>
                   <p className="font-semibold text-brand-text">{t("addressLabel")}</p>
-                  <p className="text-brand-muted text-sm mt-0.5">{CLINIC.address.street}</p>
-                  <p className="text-brand-muted text-sm">{CLINIC.address.neighborhood}</p>
-                  <p className="text-brand-muted text-sm">
-                    CP {CLINIC.address.postalCode}, {CLINIC.address.city}
-                  </p>
-                  <p className="text-brand-muted text-xs mt-1 italic">
-                    ({CLINIC.address.between})
-                  </p>
+                  {addressLines().map((line, i) => (
+                    <p key={line} className={`text-brand-muted text-sm${i === 0 ? " mt-0.5" : ""}`}>
+                      {line}
+                    </p>
+                  ))}
                 </div>
               </div>
 
@@ -64,7 +61,7 @@ export function LocationMap() {
                 <div>
                   <p className="font-semibold text-brand-text">{t("phoneLabel")}</p>
                   <a
-                    href={`tel:${CLINIC.phone.replace(/\D/g, "")}`}
+                    href={CLINIC.phoneHref}
                     className="text-primary hover:underline text-sm mt-0.5 block"
                   >
                     {CLINIC.phone}
@@ -141,7 +138,7 @@ export function LocationMap() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Ubicación de Clínica Crystal en Aguascalientes"
+              title={`Ubicación de ${CLINIC.fullName} en ${CLINIC.address.city}`}
             />
           </motion.div>
         </div>

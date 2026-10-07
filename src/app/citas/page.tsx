@@ -5,9 +5,9 @@ import { Phone, MessageCircle, Clock } from "lucide-react";
 import { CLINIC } from "@/lib/data/clinic";
 
 export const metadata: Metadata = {
-  title: "Agendar Cita — Clínica Crystal | Aguascalientes",
+  title: "Agendar cita",
   description:
-    "Agenda tu consulta médica en Clínica Crystal. Atención 24/7 en Aguascalientes. Medicina general, pediatría, ginecología, cirugía y más.",
+    "Agenda tu consulta con un especialista en Medipab, Pabellón de Arteaga. Te confirmamos por WhatsApp.",
 };
 
 export default async function CitasPage() {
@@ -47,7 +47,7 @@ export default async function CitasPage() {
               </h2>
               <div className="space-y-3">
                 <a
-                  href={`https://wa.me/${CLINIC.whatsapp}?text=${encodeURIComponent("Hola, me gustaría agendar una cita en Clínica Crystal.")}`}
+                  href={`https://wa.me/${CLINIC.whatsapp}?text=${encodeURIComponent(`Hola, me gustaría agendar una cita en ${CLINIC.name}.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-4 rounded-xl border border-brand-border hover:border-primary hover:bg-primary-light transition-colors"

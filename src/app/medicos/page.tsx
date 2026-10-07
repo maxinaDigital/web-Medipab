@@ -1,20 +1,28 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { User, ChevronRight } from "lucide-react";
+import { User, ChevronRight, MessageCircle } from "lucide-react";
+import * as LucideIcons from "lucide-react";
 import { doctors } from "@/lib/data/doctors";
+import { services } from "@/lib/data/services";
+import { CLINIC } from "@/lib/data/clinic";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 
+const specialties = services.filter(
+  (s) => s.category === "especialidades" || s.slug === "neonatologia-ucin"
+);
+
 export const metadata: Metadata = {
-  title: "Médicos Especialistas — Clínica Crystal | Aguascalientes",
+  title: "Médicos especialistas",
   description:
-    "Conoce a nuestro equipo de médicos reconocidos y certificados. Ginecología, Pediatría, Cirugía, Nutrición y más en Clínica Crystal Aguascalientes.",
+    "Más de 50 médicos especialistas atienden en Medipab Hospital de Especialidades, Pabellón de Arteaga, Aguascalientes.",
 };
 
 export default async function MedicosPage() {
   const t = await getTranslations("doctorsPage");
   const tc = await getTranslations("common");
   const td = await getTranslations("doctors");
+  const ts = await getTranslations("servicesSection");
 
   return (
     <div>
@@ -43,7 +51,47 @@ export default async function MedicosPage() {
             titleAccent={t("listTitleAccent")}
             centered
           />
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+          {doctors.length === 0 && (
+            // Sin perfiles publicados todavía: directorio por especialidad + orientación por WhatsApp
+            <div className="mt-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {specialties.map((s) => {
+                  const Icon =
+                    (LucideIcons as unknown as Record<string, React.ComponentType<{ className?: string }>>)[s.icon] ??
+                    LucideIcons.Stethoscope;
+                  return (
+                    <Link
+                      key={s.slug}
+                      href={`/servicios/${s.slug}`}
+                      className="group flex items-center gap-4 bg-white rounded-2xl border border-brand-border p-5 hover:border-primary hover:shadow-md transition-all"
+                    >
+                      <div className="w-11 h-11 rounded-xl bg-primary-light flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors">
+                        <Icon className="w-5 h-5 text-primary group-hover:text-white transition-colors" />
+                      </div>
+                      <span className="font-medium text-brand-text group-hover:text-primary transition-colors">
+                        {ts(`items.${s.slug}.name`)}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
+              <div className="mt-10 bg-white rounded-2xl border border-brand-border p-8 text-center">
+                <p className="text-brand-muted max-w-xl mx-auto">{t("emptyNote")}</p>
+                <a
+                  href={`https://wa.me/${CLINIC.whatsapp}?text=${encodeURIComponent(
+                    `Hola, me gustaría que me orienten para elegir un especialista en ${CLINIC.name}.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-6 py-3 rounded-xl font-semibold transition-colors"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  {t("emptyCta")}
+                </a>
+              </div>
+            </div>
+          )}
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 empty:hidden">
             {doctors.map((doctor) => (
               <Link
                 key={doctor.slug}

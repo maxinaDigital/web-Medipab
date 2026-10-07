@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { Heart, Shield, Users, Award, Building2, Coffee } from "lucide-react";
+import { Heart, Shield, Users, MapPin, Siren, BedSingle, FlaskConical, Pill } from "lucide-react";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 
 export const metadata: Metadata = {
-  title: "Nosotros — Clínica Crystal | Aguascalientes",
+  title: "Nosotros",
   description:
-    "Conoce la historia, misión y valores de Clínica Crystal. Una clínica privada en Aguascalientes con médicos reconocidos, 5 quirófanos equipados y atención 24/7.",
+    "Conoce Medipab, hospital de especialidades en Pabellón de Arteaga: urgencias 24 horas, terapia intensiva y especialistas cerca de casa.",
 };
 
-const VALUE_ICONS = [Heart, Shield, Users, Award];
-const FACILITY_ICONS = [Building2, Shield, Award, Coffee];
+const VALUE_ICONS = [Heart, Shield, Users, MapPin];
+const FACILITY_ICONS = [Siren, BedSingle, FlaskConical, Pill];
 
 export default async function NosotrosPage() {
   const t = await getTranslations("aboutPage");
@@ -31,10 +31,10 @@ export default async function NosotrosPage() {
   ];
 
   const QUICK_STATS = [
-    { value: "5",    label: ts("item2Label") },
-    { value: "8+",   label: ts("item3Label") },
-    { value: "24/7", label: ts("item1Label") },
-    { value: "100%", label: ts("item4Label") },
+    { value: ts("item1Value"), label: ts("item1Label") },
+    { value: ts("item2Value"), label: ts("item2Label") },
+    { value: ts("item3Value"), label: ts("item3Label") },
+    { value: ts("item4Value"), label: ts("item4Label") },
   ];
 
   return (

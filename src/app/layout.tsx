@@ -5,6 +5,7 @@ import { getMessages, getLocale } from "next-intl/server";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { CLINIC } from "@/lib/data/clinic";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -19,58 +20,59 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://clinicacrystal.com"),
+  metadataBase: new URL(CLINIC.siteUrl),
   title: {
-    default: "Clínica Crystal — Atención Médica de Calidad en Aguascalientes",
-    template: "%s | Clínica Crystal",
+    default: "Medipab Hospital de Especialidades — Pabellón de Arteaga, Aguascalientes",
+    template: "%s | Medipab Hospital de Especialidades",
   },
   description:
-    "Clínica Crystal, Aguascalientes. Atención médica privada con especialidades en maternidad, cirugía, imagenología y laboratorio propios. Agenda tu cita hoy.",
+    "Hospital de especialidades en Pabellón de Arteaga, Ags. Urgencias 24 horas, hospitalización, terapia intensiva adultos y neonatal, cirugía y más de 50 médicos especialistas.",
   keywords: [
-    "clínica Aguascalientes",
-    "médico privado Aguascalientes",
-    "maternidad Aguascalientes",
-    "cirugía Aguascalientes",
-    "consulta médica",
-    "imagenología",
-    "laboratorio clínico",
+    "hospital Pabellón de Arteaga",
+    "urgencias Pabellón de Arteaga",
+    "hospital de especialidades Aguascalientes",
+    "especialistas norte de Aguascalientes",
+    "terapia intensiva Aguascalientes",
+    "UCIN Aguascalientes",
+    "Rincón de Romos hospital",
   ],
   openGraph: {
     type: "website",
     locale: "es_MX",
-    url: "https://clinicacrystal.com",
-    siteName: "Clínica Crystal",
-    title: "Clínica Crystal — Atención Médica de Calidad en Aguascalientes",
+    url: CLINIC.siteUrl,
+    siteName: CLINIC.fullName,
+    title: "Medipab Hospital de Especialidades — Pabellón de Arteaga",
     description:
-      "Clínica privada en Aguascalientes con 3 quirófanos de maternidad, 2 de cirugía general, imagenología y laboratorio propios.",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Clínica Crystal Aguascalientes" }],
+      "Urgencias 24 horas, hospitalización, terapia intensiva, cirugía y más de 50 especialistas en el norte de Aguascalientes.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Medipab Hospital de Especialidades" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Clínica Crystal — Aguascalientes",
-    description: "Atención médica privada de calidad en Aguascalientes, México.",
+    title: "Medipab Hospital de Especialidades",
+    description: "Urgencias 24 horas y especialistas en Pabellón de Arteaga, Aguascalientes.",
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "MedicalOrganization",
-  name: "Clínica Crystal",
-  legalName: "CLINICA CRYSTAL S.A. de C.V.",
-  url: "https://clinicacrystal.com",
-  logo: "https://clinicacrystal.com/logo.svg",
-  foundingDate: "2022-05-17",
-  telephone: "+52-449-000-0000",
-  email: "contacto@clinicacrystal.com",
+  "@type": "Hospital",
+  name: CLINIC.fullName,
+  legalName: CLINIC.legalName,
+  url: CLINIC.siteUrl,
+  logo: `${CLINIC.siteUrl}/images/medipab-icono-512.png`,
+  telephone: CLINIC.phoneHref.replace("tel:", ""),
+  email: CLINIC.email,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Av. del Parque #348",
-    addressLocality: "Aguascalientes",
-    addressRegion: "Aguascalientes",
-    postalCode: "20276",
+    ...(CLINIC.address.street ? { streetAddress: CLINIC.address.street } : {}),
+    addressLocality: CLINIC.address.city,
+    addressRegion: CLINIC.address.state,
+    ...(CLINIC.address.postalCode ? { postalCode: CLINIC.address.postalCode } : {}),
     addressCountry: "MX",
   },
+  areaServed: ["Pabellón de Arteaga", "Rincón de Romos", "San José de Gracia", "Tepezalá", "Cosío"],
+  medicalSpecialty: ["Emergency", "Obstetric", "Pediatric", "Surgical"],
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",

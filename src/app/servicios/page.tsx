@@ -7,9 +7,9 @@ import { services } from "@/lib/data/services";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 
 export const metadata: Metadata = {
-  title: "Servicios Médicos — Clínica Crystal | Aguascalientes",
+  title: "Servicios médicos",
   description:
-    "Medicina general, pediatría, ginecología, cardiología, cirugía, nutrición, laboratorio e imagenología. Todas las especialidades bajo un mismo techo en Aguascalientes.",
+    "Urgencias 24 horas, hospitalización, terapia intensiva, ginecobstetricia, pediatría, cirugía, ortopedia, laboratorio, imagenología y más en Medipab, Pabellón de Arteaga.",
 };
 
 export default async function ServiciosPage() {

@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Baby, ShieldCheck, Clock, HeartPulse, CalendarDays, ArrowRight } from "lucide-react";
+import { Heart, Baby, Clock, Smile, CalendarDays, ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-const ICONS = [Baby, ShieldCheck, Clock, HeartPulse];
+const ICONS = [Heart, Baby, Clock, Smile];
 
 export function MaternityHighlight() {
   const t = useTranslations("maternity");
