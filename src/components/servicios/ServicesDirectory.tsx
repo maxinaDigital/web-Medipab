@@ -2,10 +2,11 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ChevronRight, MessageCircle, Search, X } from "lucide-react";
+import { ChevronRight, Search, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { services, type ServiceCategory } from "@/lib/data/services";
-import { whatsappUrl } from "@/lib/data/clinic";
+import { CLINIC } from "@/lib/data/clinic";
+import { ContactLink } from "@/components/shared/ContactLink";
 import { serviceIcon } from "@/components/shared/serviceIcons";
 
 const CATEGORIES: ServiceCategory[] = ["urgencias", "especialidades", "diagnostico", "apoyo"];
@@ -126,14 +127,13 @@ export function ServicesDirectory() {
         <div className="mt-6 max-w-xl mx-auto text-center bg-white rounded-2xl border border-brand-border p-8">
           <p className="text-brand-muted">{t("noResults")}</p>
           <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a
-              href={whatsappUrl(`Hola, estoy buscando atención para: ${query.trim()}. ¿Me pueden orientar?`)}
-              target="_blank"
-              rel="noopener noreferrer"
+            <ContactLink
+              message={`Hola, estoy buscando atención para: ${query.trim()}. ¿Me pueden orientar?`}
+              whatsappLabel={tc("bookWhatsApp")}
+              callLabel={`${tc("callUs")}: ${CLINIC.phone}`}
               className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors"
-            >
-              <MessageCircle className="w-4 h-4" /> {tc("bookWhatsApp")}
-            </a>
+              iconClassName="w-4 h-4"
+            />
             <button
               type="button"
               onClick={clear}

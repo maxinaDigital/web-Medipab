@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import { CLINIC, addressLines, whatsappUrl } from "@/lib/data/clinic";
+import { CLINIC, addressLines } from "@/lib/data/clinic";
+import { ContactLink } from "@/components/shared/ContactLink";
 
 export const metadata: Metadata = {
   title: "Contacto",
@@ -94,14 +95,13 @@ export default async function ContactoPage() {
             })}
 
             {/* WhatsApp CTA */}
-            <a
-              href={whatsappUrl(`Hola, me gustaría obtener más información sobre ${CLINIC.name}.`)}
-              target="_blank"
-              rel="noopener noreferrer"
+            <ContactLink
+              message={`Hola, me gustaría obtener más información sobre ${CLINIC.name}.`}
+              whatsappLabel={t("whatsAppBtn")}
+              callLabel={`${tc("callUs")}: ${CLINIC.phone}`}
               className="flex items-center justify-center gap-2 bg-primary text-white py-3 px-6 rounded-xl font-medium hover:bg-primary-dark transition-colors w-full"
-            >
-              {t("whatsAppBtn")}
-            </a>
+              iconClassName="w-5 h-5"
+            />
           </div>
 
           {/* Mapa */}

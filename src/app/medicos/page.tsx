@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { MessageCircle } from "lucide-react";
+
 import { doctors } from "@/lib/data/doctors";
 import { SPECIALTY_SERVICES } from "@/lib/data/services";
 import { serviceIcon } from "@/components/shared/serviceIcons";
-import { CLINIC, whatsappUrl } from "@/lib/data/clinic";
+import { CLINIC } from "@/lib/data/clinic";
+import { ContactLink } from "@/components/shared/ContactLink";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { DoctorsDirectory } from "@/components/medicos/DoctorsDirectory";
 
@@ -70,15 +71,13 @@ export default async function MedicosPage() {
               </div>
               <div className="mt-10 bg-white rounded-2xl border border-brand-border p-8 text-center">
                 <p className="text-brand-muted max-w-xl mx-auto">{t("emptyNote")}</p>
-                <a
-                  href={whatsappUrl(`Hola, me gustaría que me orienten para elegir un especialista en ${CLINIC.name}.`)}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <ContactLink
+                  message={`Hola, me gustaría que me orienten para elegir un especialista en ${CLINIC.name}.`}
+                  whatsappLabel={t("emptyCta")}
+                  callLabel={t("emptyCtaCall")}
                   className="mt-5 inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-6 py-3 rounded-xl font-semibold transition-colors"
-                >
-                  <MessageCircle className="w-5 h-5" />
-                  {t("emptyCta")}
-                </a>
+                  iconClassName="w-5 h-5"
+                />
               </div>
             </div>
           )}

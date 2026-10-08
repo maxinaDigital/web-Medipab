@@ -82,7 +82,9 @@ export function AppointmentForm({ initialService, initialDoctor }: AppointmentFo
       .filter(Boolean)
       .join("\n");
 
+    // El formulario solo se muestra con WhatsApp configurado (ver /citas); sin número no se envía nada.
     const url = whatsappUrl(msg);
+    if (!url) return;
     window.open(url, "_blank");
     setSent(true);
   };
@@ -99,7 +101,7 @@ export function AppointmentForm({ initialService, initialDoctor }: AppointmentFo
         <p className="text-brand-muted mb-6">
           {tc("requestSentDesc")}{" "}
           <a
-            href={whatsappUrl()}
+            href={whatsappUrl() ?? undefined}
             target="_blank"
             rel="noopener noreferrer"
             className="text-primary hover:underline"

@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { User, ChevronRight, MessageCircle } from "lucide-react";
+import { User, ChevronRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { doctors } from "@/lib/data/doctors";
 import { SPECIALTY_SERVICES } from "@/lib/data/services";
-import { CLINIC, whatsappUrl } from "@/lib/data/clinic";
+import { CLINIC } from "@/lib/data/clinic";
+import { ContactLink } from "@/components/shared/ContactLink";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { buttonVariants } from "@/components/ui/button";
 
@@ -108,15 +109,13 @@ export function TeamPreview() {
                 ))}
             </ul>
             <p className="mt-6 text-sm text-brand-muted">{t("directoryNote")}</p>
-            <a
-              href={whatsappUrl(`Hola, me gustaría que me orienten para elegir un especialista en ${CLINIC.name}.`)}
-              target="_blank"
-              rel="noopener noreferrer"
+            <ContactLink
+              message={`Hola, me gustaría que me orienten para elegir un especialista en ${CLINIC.name}.`}
+              whatsappLabel={t("directoryCta")}
+              callLabel={t("directoryCta")}
               className="mt-5 inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-6 py-3 rounded-xl font-semibold transition-colors"
-            >
-              <MessageCircle size={18} />
-              {t("directoryCta")}
-            </a>
+              iconClassName="w-[18px] h-[18px]"
+            />
           </motion.div>
         )}
       </div>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getLocale } from "next-intl/server";
-import { CLINIC } from "@/lib/data/clinic";
+import { CLINIC, HAS_WHATSAPP } from "@/lib/data/clinic";
 
 // PENDIENTE: borrador con la estructura de la LFPDPPP. Debe revisarlo y aprobarlo el área legal
 // del cliente (razón social, domicilio fiscal, responsable de datos) antes de publicar el sitio.
@@ -44,54 +44,76 @@ export default async function AvisoDePrivacidadPage() {
             </p>
           </Section>
 
-          <Section title="2. Datos que recabamos en este sitio">
-            <p>Cuando solicitas una cita mediante el formulario de este sitio, recabamos:</p>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>Nombre completo, teléfono y correo electrónico.</li>
-              <li>Especialidad o servicio de interés, médico preferido, fecha y turno preferidos.</li>
-              <li>
-                De manera opcional, el motivo de tu consulta. Esta información puede referirse a tu
-                estado de salud, por lo que se considera un <strong>dato personal sensible</strong>.
-              </li>
-            </ul>
-            <p>
-              Este sitio no utiliza cookies de publicidad ni de seguimiento. Solo guardamos una cookie
-              técnica con el idioma que elegiste.
-            </p>
-          </Section>
+          {HAS_WHATSAPP ? (
+            <>
+            <Section title="2. Datos que recabamos en este sitio">
+              <p>Cuando solicitas una cita mediante el formulario de este sitio, recabamos:</p>
+              <ul className="list-disc pl-6 space-y-1">
+                <li>Nombre completo, teléfono y correo electrónico.</li>
+                <li>Especialidad o servicio de interés, médico preferido, fecha y turno preferidos.</li>
+                <li>
+                  De manera opcional, el motivo de tu consulta. Esta información puede referirse a tu
+                  estado de salud, por lo que se considera un <strong>dato personal sensible</strong>.
+                </li>
+              </ul>
+              <p>
+                Este sitio no utiliza cookies de publicidad ni de seguimiento. Solo guardamos una cookie
+                técnica con el idioma que elegiste.
+              </p>
+            </Section>
+  
+            <Section title="3. Para qué usamos tus datos">
+              <p>
+                Usamos tus datos únicamente para contactarte, coordinar y confirmar tu cita, y orientarte
+                sobre el especialista o servicio adecuado. No los usamos con fines publicitarios.
+              </p>
+            </Section>
+  
+            <Section title="4. Consentimiento para datos sensibles">
+              <p>
+                Al marcar la casilla de aceptación del formulario nos otorgas tu consentimiento expreso para
+                tratar los datos sensibles que decidas compartir, solo para la finalidad descrita en este
+                aviso.
+              </p>
+            </Section>
+  
+            <Section title="5. Cómo se envía tu solicitud">
+              <p>
+                El formulario no guarda tus datos en este sitio: al enviarlo se abre WhatsApp en tu
+                dispositivo con tu solicitud ya escrita, y eres tú quien decide enviarla al número del
+                hospital. Ese envío está sujeto también a las condiciones y al aviso de privacidad de
+                WhatsApp.
+              </p>
+            </Section>
+            </>
+          ) : (
+            <>
+              <Section title="2. Datos que recabamos en este sitio">
+                <p>
+                  Este sitio no recaba datos personales mediante formularios: las citas se agendan por
+                  teléfono. Solo guardamos una cookie técnica con el idioma que elegiste y no utilizamos
+                  cookies de publicidad ni de seguimiento.
+                </p>
+              </Section>
 
-          <Section title="3. Para qué usamos tus datos">
-            <p>
-              Usamos tus datos únicamente para contactarte, coordinar y confirmar tu cita, y orientarte
-              sobre el especialista o servicio adecuado. No los usamos con fines publicitarios.
-            </p>
-          </Section>
+              <Section title="3. Datos que nos compartes por teléfono o en persona">
+                <p>
+                  Los datos que nos proporciones al llamar o al acudir al hospital (incluidos datos sobre tu
+                  salud, que son datos personales sensibles) se usan únicamente para coordinar y brindarte
+                  atención médica.
+                </p>
+              </Section>
+            </>
+          )}
 
-          <Section title="4. Consentimiento para datos sensibles">
-            <p>
-              Al marcar la casilla de aceptación del formulario nos otorgas tu consentimiento expreso para
-              tratar los datos sensibles que decidas compartir, solo para la finalidad descrita en este
-              aviso.
-            </p>
-          </Section>
-
-          <Section title="5. Cómo se envía tu solicitud">
-            <p>
-              El formulario no guarda tus datos en este sitio: al enviarlo se abre WhatsApp en tu
-              dispositivo con tu solicitud ya escrita, y eres tú quien decide enviarla al número del
-              hospital. Ese envío está sujeto también a las condiciones y al aviso de privacidad de
-              WhatsApp.
-            </p>
-          </Section>
-
-          <Section title="6. Transferencia de datos">
+          <Section title={`${HAS_WHATSAPP ? 6 : 4}. Transferencia de datos`}>
             <p>
               No compartimos tus datos personales con terceros, salvo en los casos previstos por la ley o
               cuando sea necesario para tu atención médica.
             </p>
           </Section>
 
-          <Section title="7. Derechos ARCO y revocación del consentimiento">
+          <Section title={`${HAS_WHATSAPP ? 7 : 5}. Derechos ARCO y revocación del consentimiento`}>
             <p>
               Tienes derecho a acceder a tus datos, rectificarlos, cancelarlos u oponerte a su uso
               (derechos ARCO), así como a revocar tu consentimiento. Para ejercerlos, escríbenos a{" "}
@@ -103,7 +125,7 @@ export default async function AvisoDePrivacidadPage() {
             </p>
           </Section>
 
-          <Section title="8. Cambios a este aviso">
+          <Section title={`${HAS_WHATSAPP ? 8 : 6}. Cambios a este aviso`}>
             <p>
               Cualquier cambio a este aviso de privacidad se publicará en esta misma página, con su fecha
               de actualización.

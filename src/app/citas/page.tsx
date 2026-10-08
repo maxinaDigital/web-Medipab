@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { AppointmentForm } from "@/components/citas/AppointmentForm";
 import { Phone, MessageCircle, Clock } from "lucide-react";
-import { CLINIC, whatsappUrl } from "@/lib/data/clinic";
+import { CLINIC, HAS_WHATSAPP, whatsappUrl } from "@/lib/data/clinic";
 
 export const metadata: Metadata = {
   title: "Agendar cita",
   description:
-    "Agenda tu consulta con un especialista en Medipab, Pabellón de Arteaga. Te confirmamos por WhatsApp.",
+    "Agenda tu consulta con un especialista en Medipab, Pabellón de Arteaga.",
 };
 
 export default async function CitasPage({
@@ -31,7 +31,7 @@ export default async function CitasPage({
             <span className="text-glow-light">{t("titleAccent")}</span>
           </h1>
           <p className="text-white/75 text-lg max-w-xl mx-auto">
-            {t("subtitle")}
+            {HAS_WHATSAPP ? t("subtitle") : t("subtitlePhone")}
           </p>
         </div>
       </section>
@@ -40,7 +40,26 @@ export default async function CitasPage({
         <div className="max-w-5xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-10">
           {/* Formulario */}
           <div className="lg:col-span-2">
-            <AppointmentForm initialService={searchParams.servicio} initialDoctor={searchParams.medico} />
+            {HAS_WHATSAPP ? (
+              <AppointmentForm initialService={searchParams.servicio} initialDoctor={searchParams.medico} />
+            ) : (
+              // Sin WhatsApp el formulario no tiene a dónde enviar la solicitud: se agenda por teléfono
+              <div className="bg-white rounded-2xl border border-brand-border p-8 md:p-10 text-center">
+                <div className="w-16 h-16 rounded-full bg-primary-light flex items-center justify-center mx-auto mb-5">
+                  <Phone className="w-8 h-8 text-primary" aria-hidden="true" />
+                </div>
+                <h2 className="font-heading text-2xl font-bold text-brand-text mb-3">{t("phoneBookingTitle")}</h2>
+                <p className="text-brand-muted max-w-md mx-auto mb-6">{t("phoneBookingDesc")}</p>
+                <a
+                  href={CLINIC.phoneHref}
+                  className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white px-7 py-3.5 rounded-xl font-semibold text-lg transition-colors"
+                >
+                  <Phone className="w-5 h-5" aria-hidden="true" />
+                  {CLINIC.phone}
+                </a>
+                <p className="text-brand-muted text-sm mt-4">{t("phoneBookingHours")}</p>
+              </div>
+            )}
           </div>
 
           {/* Sidebar */}
@@ -50,8 +69,9 @@ export default async function CitasPage({
                 {t("contactTitle")}
               </h2>
               <div className="space-y-3">
+                {HAS_WHATSAPP && (
                 <a
-                  href={whatsappUrl(`Hola, me gustaría agendar una cita en ${CLINIC.name}.`)}
+                  href={whatsappUrl(`Hola, me gustaría agendar una cita en ${CLINIC.name}.`) ?? undefined}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-4 rounded-xl border border-brand-border hover:border-primary hover:bg-primary-light transition-colors"
@@ -62,6 +82,7 @@ export default async function CitasPage({
                     <p className="text-brand-muted text-xs">{tc("immediateResponse")}</p>
                   </div>
                 </a>
+                )}
                 <a
                   href={CLINIC.phoneHref}
                   className="flex items-center gap-3 p-4 rounded-xl border border-brand-border hover:border-primary hover:bg-primary-light transition-colors"
@@ -91,10 +112,12 @@ export default async function CitasPage({
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl border border-brand-border p-6 text-sm text-brand-muted leading-relaxed">
-              <p className="font-semibold text-brand-text mb-2">{tc("howItWorksShort")}</p>
-              <p className="whitespace-pre-line">{tc("howItWorksSteps")}</p>
-            </div>
+            {HAS_WHATSAPP && (
+              <div className="bg-white rounded-2xl border border-brand-border p-6 text-sm text-brand-muted leading-relaxed">
+                <p className="font-semibold text-brand-text mb-2">{tc("howItWorksShort")}</p>
+                <p className="whitespace-pre-line">{tc("howItWorksSteps")}</p>
+              </div>
+            )}
           </div>
         </div>
       </section>

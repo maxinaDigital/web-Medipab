@@ -21,7 +21,7 @@ export function Footer() {
   const SOCIAL_LINKS = [
     { href: CLINIC.social.facebook as string, label: "Facebook", Icon: Share2 },
     { href: CLINIC.social.instagram as string, label: "Instagram", Icon: Camera },
-    { href: whatsappUrl(), label: "WhatsApp", Icon: MessageCircle },
+    { href: whatsappUrl() ?? "", label: "WhatsApp", Icon: MessageCircle },
   ].filter((link) => link.href);
 
   const NAV_LINKS = [

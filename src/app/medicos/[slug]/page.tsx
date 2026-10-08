@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { User, GraduationCap, Clock, CheckCircle2, MessageCircle, ChevronRight } from "lucide-react";
+import { User, GraduationCap, Clock, CheckCircle2, ChevronRight } from "lucide-react";
 import { doctors, getDoctorBySlug } from "@/lib/data/doctors";
 import { services } from "@/lib/data/services";
-import { CLINIC, whatsappUrl } from "@/lib/data/clinic";
+import { CLINIC } from "@/lib/data/clinic";
+import { ContactLink } from "@/components/shared/ContactLink";
 import { jsonLdHtml } from "@/lib/jsonLd";
 
 // Solo existen los perfiles de doctors.ts; cualquier otro slug es 404.
@@ -155,15 +156,13 @@ export default async function DoctorPage({ params }: { params: { slug: string } 
               <p className="text-white/70 text-sm mb-5">
                 {tc("immediateResponse")}
               </p>
-              <a
-                href={whatsappUrl(whatsappText)}
-                target="_blank"
-                rel="noopener noreferrer"
+              <ContactLink
+                message={whatsappText}
+                whatsappLabel={tc("bookWhatsApp")}
+                callLabel={`${tc("callUs")}: ${CLINIC.phone}`}
                 className="flex items-center justify-center gap-2 bg-white text-primary font-semibold py-3 px-5 rounded-lg hover:bg-primary-light transition-colors w-full"
-              >
-                <MessageCircle className="w-5 h-5" />
-                {tc("bookWhatsApp")}
-              </a>
+                iconClassName="w-5 h-5"
+              />
               <Link
                 href={`/citas?medico=${doctor.slug}${doctor.servicesSlugs[0] ? `&servicio=${doctor.servicesSlugs[0]}` : ""}`}
                 className="flex items-center justify-center gap-2 border border-white/30 text-white py-3 px-5 rounded-lg hover:bg-white/10 transition-colors w-full mt-3 text-sm"

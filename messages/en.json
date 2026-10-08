@@ -75,7 +75,7 @@
   },
   "quickActions": {
     "book": "Book Appointment",
-    "bookDesc": "We confirm via WhatsApp",
+    "bookDesc": "We'll confirm your appointment",
     "call": "Emergency",
     "callDesc": "Call 24 hours a day",
     "directions": "Get Directions",
@@ -132,7 +132,7 @@
         "desc": "Medical care for babies, children and teenagers.",
         "full": "We care for your children from birth through adolescence: well-child visits, acute illnesses, emergencies and pediatric hospitalization when needed.",
         "conditions": ["Well-child checkups", "Respiratory infections", "Fever and gastrointestinal illnesses", "Allergies and skin conditions", "Growth and development monitoring", "Pediatric hospitalization"],
-        "process": [{"title":"Book your appointment","desc":"Via WhatsApp, phone or our online form."},{"title":"Consultation","desc":"The pediatrician examines your child and explains the diagnosis and treatment."},{"title":"Follow-up","desc":"We schedule the follow-up visits your child needs."}],
+        "process": [{"title":"Book your appointment","desc":"By phone or from our Appointments page."},{"title":"Consultation","desc":"The pediatrician examines your child and explains the diagnosis and treatment."},{"title":"Follow-up","desc":"We schedule the follow-up visits your child needs."}],
         "faq": [{"q":"Up to what age does the pediatrician see patients?","a":"Generally from birth to age 17."},{"q":"What if my child has an emergency at night?","a":"Come to the emergency room: we're open 24 hours a day, every day."}]
       },
       "cirugia-general": {
@@ -149,7 +149,7 @@
         "full": "We treat injuries and conditions of the bones, muscles and joints: from fractures and sprains that come through the emergency room to spine and joint problems that require consultation or surgery.",
         "conditions": ["Fractures and dislocations", "Sprains and ligament injuries", "Sports injuries", "Knee, hip or shoulder pain", "Back and spine pain", "Accident care"],
         "process": [{"title":"Assessment","desc":"Physical exam and imaging to determine the type of injury."},{"title":"Treatment","desc":"Immobilization, medical treatment or surgery, depending on your case."},{"title":"Follow-up","desc":"Follow-up visits until you recover."}],
-        "faq": [{"q":"If I break a bone, where should I go?","a":"Come directly to the emergency room: we're open 24 hours and have imaging in the hospital."},{"q":"Do I need an appointment for a non-urgent injury?","a":"Yes. Book your consultation via WhatsApp, phone or the online form."}]
+        "faq": [{"q":"If I break a bone, where should I go?","a":"Come directly to the emergency room: we're open 24 hours and have imaging in the hospital."},{"q":"Do I need an appointment for a non-urgent injury?","a":"Yes. Book your consultation by phone or from our Appointments page."}]
       },
       "consulta-externa": {
         "name": "Specialty Outpatient Clinic",
@@ -257,7 +257,7 @@
     "titleAccent": "simple steps",
     "description": "We guide you from the first contact so you know where to go and who will see you.",
     "step1Title": "Book your appointment",
-    "step1Desc": "Message us on WhatsApp or call us. We'll point you to the right specialist and coordinate a time.",
+    "step1Desc": "Call us or book from our Appointments page. We'll point you to the right specialist and coordinate a time.",
     "step2Title": "Come to the hospital",
     "step2Desc": "We're in Pabellón de Arteaga, Aguascalientes. In an emergency, come straight in: we're open 24 hours.",
     "step3Title": "Receive comprehensive care",
@@ -311,7 +311,7 @@
     "title": "We're ready to",
     "titleAccent": "care for you",
     "description": "Medipab's emergency room is open 24 hours a day, every day. Specialists, inpatient care, intensive care, laboratory and imaging in one place, in Pabellón de Arteaga.",
-    "cta1": "Book via WhatsApp",
+    "cta1": "Book an appointment",
     "cta2": "Call",
     "disclaimer": "In a serious emergency, come directly to the emergency room or call 911."
   },
@@ -395,6 +395,7 @@
     "listTitleAccent": "consultations at the hospital",
     "emptyNote": "We're building the directory with each doctor's profile. In the meantime, we'll help you find the specialist you need.",
     "emptyCta": "Ask for guidance on WhatsApp",
+    "emptyCtaCall": "Call for guidance",
     "filterLabel": "Filter by specialty",
     "filterAll": "All"
   },
@@ -403,6 +404,10 @@
     "title": "Book your",
     "titleAccent": "appointment",
     "subtitle": "Fill out the form and we'll confirm via WhatsApp.",
+    "subtitlePhone": "Call us and we'll book your consultation with the specialist you need.",
+    "phoneBookingTitle": "Book your appointment by phone",
+    "phoneBookingDesc": "We'll help you choose the specialist, day and time. For an emergency you don't need an appointment: come directly.",
+    "phoneBookingHours": "Hospital open 24 hours",
     "formTitle": "Appointment form",
     "nameLabel": "Full name",
     "namePlaceholder": "E.g. Maria Gonzalez",
@@ -433,7 +438,7 @@
     "eyebrow": "We answer your questions",
     "title": "Frequently asked",
     "titleAccent": "questions",
-    "subtitle": "If you can't find what you're looking for, call us or message us on WhatsApp.",
+    "subtitle": "If you can't find what you're looking for, call us and we'll be glad to help.",
     "cat1": "Appointments and care",
     "cat2": "Hours and facilities",
     "cat3": "Services",
@@ -444,7 +449,7 @@
     "ctaBook": "Book appointment",
     "cat1Items": [
       {"q":"Do I need an appointment to be seen?","a":"To see a specialist, yes — we recommend booking. For emergencies you don't need an appointment: we're open 24 hours a day, 365 days a year."},
-      {"q":"How can I book an appointment?","a":"Via WhatsApp, by phone or with the form on our Appointments page. We'll confirm the specialist's availability."},
+      {"q":"How can I book an appointment?","a":"By phone or from our Appointments page. We'll confirm the specialist's availability."},
       {"q":"I don't know which specialist I need. Can you help?","a":"Yes. Tell us your symptoms or the reason for your visit and we'll suggest the right specialist."},
       {"q":"Do the doctors work at the hospital?","a":"Medipab works with over 50 medical specialists who see and treat their patients at the hospital, backed by the emergency room, inpatient care, laboratory and imaging."}
     ],
@@ -477,7 +482,7 @@
     "eyebrow": "Here to help",
     "title": "Get in",
     "titleAccent": "touch",
-    "subtitle": "Call us, message us on WhatsApp or visit us in Pabellón de Arteaga. Emergency room open 24 hours.",
+    "subtitle": "Call us or visit us in Pabellón de Arteaga. Emergency room open 24 hours.",
     "infoTitle": "Contact information",
     "whatsAppBtn": "Message us on WhatsApp"
   }

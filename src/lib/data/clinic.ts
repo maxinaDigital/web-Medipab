@@ -4,9 +4,6 @@
 // Todo lo marcado PENDIENTE es un placeholder que el cliente debe confirmar antes de publicar
 // (lista completa en CLAUDE.md → "Hospital data").
 
-// Número de relleno heredado del arranque del proyecto. Mientras siga aquí, el build de producción falla
-// (ver assertLaunchReady) para que el formulario no envíe datos de pacientes a un número ajeno.
-const WHATSAPP_PLACEHOLDER = "524650000000";
 
 export const CLINIC = {
   name: "Medipab",
@@ -17,7 +14,10 @@ export const CLINIC = {
   // PENDIENTE: confirmar si Urgencias tiene línea directa; mientras, el conmutador (abierto 24 h)
   emergencyPhone: "465 1111 202",
   emergencyPhoneHref: "tel:+524651111202",
-  whatsapp: WHATSAPP_PLACEHOLDER, // PENDIENTE: número de WhatsApp del hospital (52 + 10 dígitos)
+  // PENDIENTE: WhatsApp del hospital, formato 52 + 10 dígitos (ej. "524651111202").
+  // Vacío = el sitio funciona solo con teléfono: los botones dicen "Llamar" y /citas pide agendar por teléfono.
+  // Al llenarlo, el formulario de citas y los botones de WhatsApp se activan solos.
+  whatsapp: "" as string,
   // El hospital no tiene correo propio: se usa el de Maxina Digital (indicado por el usuario, 2026-10-07)
   email: "contacto@maxinadigital.com",
   // Dominio confirmado por el usuario (registrado 2026-10-05, DNS en Cloudflare).
@@ -42,21 +42,26 @@ export const CLINIC = {
   },
 } as const;
 
-/** Enlace de WhatsApp al hospital, opcionalmente con un mensaje prellenado. */
-export function whatsappUrl(text?: string): string {
+/** Hay WhatsApp configurado: activa el formulario de citas y los botones de WhatsApp. */
+export const HAS_WHATSAPP = CLINIC.whatsapp !== "";
+
+/** Enlace de WhatsApp con mensaje opcional, o null si el hospital aún no tiene WhatsApp configurado. */
+export function whatsappUrl(text?: string): string | null {
+  if (!HAS_WHATSAPP) return null;
   const base = `https://wa.me/${CLINIC.whatsapp}`;
   return text ? `${base}?text=${encodeURIComponent(text)}` : base;
 }
 
 /**
- * Falla el build de producción en Vercel si siguen datos de contacto de relleno que recibirían
- * información de pacientes. Los previews (VERCEL_ENV=preview) y el desarrollo local no se bloquean.
+ * Falla el build de producción en Vercel si el WhatsApp configurado no tiene formato válido (recibiría
+ * datos de pacientes). Sin WhatsApp el sitio funciona solo con teléfono y no se bloquea.
  */
 export function assertLaunchReady(): void {
   if (process.env.VERCEL_ENV !== "production") return;
   const problems = [
-    CLINIC.whatsapp === WHATSAPP_PLACEHOLDER &&
-      "CLINIC.whatsapp sigue siendo el número de relleno: configura el WhatsApp real del hospital.",
+    HAS_WHATSAPP &&
+      !/^52\d{10}$/.test(CLINIC.whatsapp) &&
+      `CLINIC.whatsapp = "${CLINIC.whatsapp}" no tiene el formato 52 + 10 dígitos: el formulario enviaría datos de pacientes a un número equivocado.`,
   ].filter(Boolean);
   if (problems.length > 0) {
     throw new Error(`No se puede publicar a producción:\n- ${problems.join("\n- ")}`);

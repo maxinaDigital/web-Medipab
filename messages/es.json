@@ -75,7 +75,7 @@
   },
   "quickActions": {
     "book": "Agendar Cita",
-    "bookDesc": "Te confirmamos por WhatsApp",
+    "bookDesc": "Te confirmamos tu cita",
     "call": "Urgencias",
     "callDesc": "Llama las 24 horas",
     "directions": "Cómo Llegar",
@@ -132,7 +132,7 @@
         "desc": "Atención médica de bebés, niños y adolescentes.",
         "full": "Atendemos a tus hijos desde el nacimiento hasta la adolescencia: consultas de control, enfermedades agudas, urgencias y hospitalización pediátrica cuando es necesaria.",
         "conditions": ["Control del niño sano", "Infecciones respiratorias", "Fiebre y enfermedades gastrointestinales", "Alergias y problemas de la piel", "Seguimiento del crecimiento y desarrollo", "Hospitalización pediátrica"],
-        "process": [{"title":"Agenda tu cita","desc":"Por WhatsApp, teléfono o nuestro formulario en línea."},{"title":"Consulta","desc":"El pediatra valora a tu hijo y te explica el diagnóstico y el tratamiento."},{"title":"Seguimiento","desc":"Programamos las consultas de control que tu hijo necesite."}],
+        "process": [{"title":"Agenda tu cita","desc":"Por teléfono o desde nuestra página de Citas."},{"title":"Consulta","desc":"El pediatra valora a tu hijo y te explica el diagnóstico y el tratamiento."},{"title":"Seguimiento","desc":"Programamos las consultas de control que tu hijo necesite."}],
         "faq": [{"q":"¿Hasta qué edad atiende el pediatra?","a":"Generalmente desde el nacimiento hasta los 17 años."},{"q":"¿Y si mi hijo tiene una urgencia de noche?","a":"Acude a urgencias: estamos abiertos las 24 horas, todos los días."}]
       },
       "cirugia-general": {
@@ -149,7 +149,7 @@
         "full": "Atendemos lesiones y enfermedades de huesos, músculos y articulaciones: desde fracturas y esguinces que llegan a urgencias hasta padecimientos de columna y articulaciones que requieren consulta o cirugía.",
         "conditions": ["Fracturas y luxaciones", "Esguinces y lesiones de ligamentos", "Lesiones deportivas", "Dolor de rodilla, cadera u hombro", "Dolor de espalda y columna", "Atención de accidentes"],
         "process": [{"title":"Valoración","desc":"Exploración y estudios de imagen para conocer el tipo de lesión."},{"title":"Tratamiento","desc":"Inmovilización, tratamiento médico o cirugía, según tu caso."},{"title":"Seguimiento","desc":"Consultas de control hasta tu recuperación."}],
-        "faq": [{"q":"Si me fracturo, ¿a dónde acudo?","a":"Ven directamente a urgencias: atendemos las 24 horas y contamos con estudios de imagen en el hospital."},{"q":"¿Necesito cita para una lesión que no es urgente?","a":"Sí. Agenda tu consulta por WhatsApp, teléfono o el formulario en línea."}]
+        "faq": [{"q":"Si me fracturo, ¿a dónde acudo?","a":"Ven directamente a urgencias: atendemos las 24 horas y contamos con estudios de imagen en el hospital."},{"q":"¿Necesito cita para una lesión que no es urgente?","a":"Sí. Agenda tu consulta por teléfono o desde nuestra página de Citas."}]
       },
       "consulta-externa": {
         "name": "Consulta Externa de Especialidades",
@@ -257,7 +257,7 @@
     "titleAccent": "pasos sencillos",
     "description": "Te acompañamos desde el primer contacto para que sepas a dónde ir y con quién.",
     "step1Title": "Agenda tu cita",
-    "step1Desc": "Escríbenos por WhatsApp o llámanos. Te orientamos sobre el especialista indicado y coordinamos el horario.",
+    "step1Desc": "Llámanos o agenda desde nuestra página de Citas. Te orientamos sobre el especialista indicado y coordinamos el horario.",
     "step2Title": "Acude al hospital",
     "step2Desc": "Estamos en Pabellón de Arteaga, Aguascalientes. En caso de urgencia, ven directamente: atendemos las 24 horas.",
     "step3Title": "Recibe atención integral",
@@ -311,7 +311,7 @@
     "title": "Estamos listos para",
     "titleAccent": "atenderte",
     "description": "Medipab atiende urgencias las 24 horas, todos los días. Especialistas, hospitalización, terapia intensiva, laboratorio e imagenología en un mismo lugar, en Pabellón de Arteaga.",
-    "cta1": "Agendar cita por WhatsApp",
+    "cta1": "Agendar cita",
     "cta2": "Llamar",
     "disclaimer": "En una emergencia grave, acude directamente a Urgencias o llama al 911."
   },
@@ -395,6 +395,7 @@
     "listTitleAccent": "consulta en el hospital",
     "emptyNote": "Estamos integrando el directorio con el perfil de cada médico. Mientras tanto, te ayudamos a encontrar al especialista que necesitas.",
     "emptyCta": "Pedir orientación por WhatsApp",
+    "emptyCtaCall": "Llamar para pedir orientación",
     "filterLabel": "Filtrar por especialidad",
     "filterAll": "Todas"
   },
@@ -403,6 +404,10 @@
     "title": "Agenda tu",
     "titleAccent": "cita",
     "subtitle": "Llena el formulario y te confirmamos por WhatsApp.",
+    "subtitlePhone": "Llámanos y agendamos tu consulta con el especialista que necesitas.",
+    "phoneBookingTitle": "Agenda tu cita por teléfono",
+    "phoneBookingDesc": "Te ayudamos a elegir especialista, día y horario. Si es una urgencia no necesitas cita: acude directamente.",
+    "phoneBookingHours": "Hospital abierto las 24 horas",
     "formTitle": "Formulario de cita",
     "nameLabel": "Nombre completo",
     "namePlaceholder": "Ej. María González",
@@ -433,7 +438,7 @@
     "eyebrow": "Resolvemos tus dudas",
     "title": "Preguntas",
     "titleAccent": "frecuentes",
-    "subtitle": "Si no encuentras lo que buscas, llámanos o escríbenos por WhatsApp.",
+    "subtitle": "Si no encuentras lo que buscas, llámanos y con gusto te ayudamos.",
     "cat1": "Citas y atención",
     "cat2": "Horarios e instalaciones",
     "cat3": "Servicios",
@@ -444,7 +449,7 @@
     "ctaBook": "Agendar cita",
     "cat1Items": [
       {"q":"¿Necesito cita para ser atendido?","a":"Para consulta con un especialista sí, te recomendamos agendar. Para urgencias no necesitas cita: atendemos las 24 horas, los 365 días del año."},
-      {"q":"¿Cómo puedo agendar una cita?","a":"Por WhatsApp, por teléfono o con el formulario de nuestra página de Citas. Te confirmamos la disponibilidad del especialista."},
+      {"q":"¿Cómo puedo agendar una cita?","a":"Por teléfono o desde nuestra página de Citas. Te confirmamos la disponibilidad del especialista."},
       {"q":"No sé qué especialista necesito, ¿me pueden orientar?","a":"Sí. Cuéntanos tus síntomas o el motivo de tu consulta y te sugerimos el especialista adecuado."},
       {"q":"¿Los médicos trabajan en el hospital?","a":"Medipab trabaja con más de 50 médicos especialistas que consultan y atienden a sus pacientes en el hospital, con el respaldo de urgencias, hospitalización, laboratorio e imagenología."}
     ],
@@ -477,7 +482,7 @@
     "eyebrow": "Estamos para servirte",
     "title": "Ponte en",
     "titleAccent": "contacto",
-    "subtitle": "Llámanos, escríbenos por WhatsApp o visítanos en Pabellón de Arteaga. Urgencias abiertas las 24 horas.",
+    "subtitle": "Llámanos o visítanos en Pabellón de Arteaga. Urgencias abiertas las 24 horas.",
     "infoTitle": "Información de contacto",
     "whatsAppBtn": "Escribir por WhatsApp"
   }
